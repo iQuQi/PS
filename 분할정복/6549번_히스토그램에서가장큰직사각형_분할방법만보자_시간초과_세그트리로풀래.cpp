@@ -34,7 +34,7 @@ vector<pair<int,int> >hei;
 long long histo(int start, int end) {
 
 	if(start<end){
-		//벡터 범위 내에서 최소값 구하기
+		//벡터 범위 내에서 최소값 구하기 -> O(N)으로 시간초과 발생
 		int cut = (*min_element(hei.begin() + start, hei.begin() + end)).second;
 		
 		//왼쪽 구간에서의 최댓값
