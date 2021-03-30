@@ -16,7 +16,7 @@ long long x, y, z, now_z;
 //x는 게임 횟수 y는 이긴 게임
 
 long long bin(long long left, long long right) {
-	long long mid, ret = -1;
+	long long mid, ret = CON+5;
 	//(1)no------------|--------yes(max)
 
 	while (left <= right)
@@ -28,6 +28,9 @@ long long bin(long long left, long long right) {
 		//현재 슬률보다 높다면
 		if (z > now_z) {
 			right = mid - 1;
+			//if (re >= mid)re = mid; 
+			//아래 ret=mid+1 대신 여기에 써도됨 동일한 결과 
+			//헷갈린다면 무조건 yes 인쪽에서 갱신한다고 생각하자
 		}
 		//현재 승률보다 같다면
 		else {
