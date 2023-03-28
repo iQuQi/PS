@@ -28,6 +28,7 @@ def solution(food_times, k):
     length = len(food_times) # 남은 음식의 개수
 
     # sum_value + (현재의 음식 시간 - 이전 음식 시간) * 현재 음식 개수와 k 비교
+    # 힙 인덱싱 가능 & sorted(q) 가능
     while sum_value + ((q[0][0] - previous) * length) <= k:
         now = heapq.heappop(q)[0]
         sum_value += (now - previous) * length

@@ -361,9 +361,31 @@
 > (최소) 힙 제공. 우선순위 큐 기능 구현할 때 사용
 1. 단순히 원소를 전부 넣어다가 빼는 것만으로 시간 복잡도 O(NlogN)에 오름차순 정렬 완료 
 2. 힙의 최상단 원소는 항상 가장 작은 원소이기 때문!
-3. 최대 힙은 제공하지 않음 -> 삽입 시 부호 변경 & 꺼낼 때 다시 부호 변경하면 됨 
-1. **heappush(h,value)**: 원소 삽입
-2. **heappop(h)**: 원소 꺼내기
+3. 최대 힙은 제공하지 않음 -> 삽입 시 부호 변경 & 꺼낼 때 다시 부호 변경하면 됨
+4. 사용법
+    ```python
+    import heapq
+
+    # 초기화
+    q = []
+
+    # 예시 - 튜플 힙
+    heapq.heappush(q, (3, 22))
+    heapq.heappush(q, (2, 30))
+
+    print(q[0])
+    result = sorted(q, key =  lambda x: x[1])
+    print(result)
+
+    heapq.heappop(q)
+    ======
+    (2, 30)
+    [(3, 20), (2, 30)]
+
+    ```
+5. **heappush(h,value)**: 원소 삽입
+6. **heappop(h)**: 원소 꺼내기
+
 <br/>
 
 ### 4️⃣ bisect
@@ -388,6 +410,7 @@
   ====
   6
   ```
+
 <br/>
 
 ### 5️⃣ collections
@@ -432,6 +455,7 @@
   1
   {'red':2, 'blue':1, 'green': 1}
   ```
+
 <br/>
 
 ### 6️⃣ math
