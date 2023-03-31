@@ -80,7 +80,8 @@
 3. **인덱싱과 슬라이싱**
   - 인덱스는 음,양의 정수 모두 가능.
   - 음의 정수의 경우 거꾸로 탐색
-  - arr[a:b(:step)] ⇒ a부터 b-1 까지 가져오기. step은 옵션
+  - arr[a:b(:step)] ⇒ a부터 b-1 까지 가져오기. step은 옵션 & **음수로 넣으면 뒤에서부터 가져오기**
+  
 4. **리스트 컴프리헨션 (예시)**
   - array = [i for i in range(20) if i % 2 == 1]  ⇒ 0~19까지의 수 중 홀수만 포함하는 리스트 생성
   - array = [i * i for i in range(1,10)]  ⇒ 1~9까지의 수의 제곱 값을 포함하는 리스트
@@ -441,7 +442,7 @@
 1. **deque**
 ```python
   from collections import deque
-  data = deque([2,3,4])
+  data = deque([2,3,4]) # deque()로 초기화 가능
   data.appendleft(1)
   data.append(5)
 
