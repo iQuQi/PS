@@ -65,7 +65,8 @@
     일반 연산자| +, -, *,  /(일반적인 나누기), //(몫), %(나머지), **(거듭제곱)
     쉬프트 연산자| << N (2^N배), >> N ((1/2)^N배)
     비트단위 연산자| ~(not), &(and), \|(or), ^(nor)
-    
+4. C언어와 동일하게 음수의 몫 구하기: int(a/b)
+
 <br/>
 
 ### 2️⃣ 리스트 자료형
@@ -86,6 +87,11 @@
   - array = [i for i in range(20) if i % 2 == 1]  ⇒ 0~19까지의 수 중 홀수만 포함하는 리스트 생성
   - array = [i * i for i in range(1,10)]  ⇒ 1~9까지의 수의 제곱 값을 포함하는 리스트
   - 2차원 배열 초기화 방법도 여기에 해당
+  - 2차원 배열 flatten
+    ```python
+    # 2차원 -> 1차원
+    flatten_arr = [y for x in arr for y in x]
+    ```
 5. **메서드**
 
     사용법 | 설명 | 시간 복잡도
@@ -105,16 +111,31 @@
     remove_set = {3,4}
     result = [i for i in a if i not in remove_set]
     ```
-- 2차원 배열 복사
+- 리스트 중복 제거 => set()
+7. 2차원 배열 예외
   ```python
-  # 방법1. deepcopy()
+  # 복사 방법1. deepcopy() -> 코딩 테스트에서는 사용 불가
   import copy
   a = [[1,2],[3,4]]
   b = copy.deepcopy(a)
   
-  # 방법2. 새로운 배열 생성 
+  # 복사 방법2. 새로운 배열 생성 
   a = [[1, 2], [3, 4]]
   b = [arr[:] for arr in a]
+  ```
+  ```python
+  # count()
+  test=[0,0,0]
+  test2 = [[0,0,0]]
+  print(test.count(0), test2.count(0))
+  =======
+  3 0
+  ```
+  ```python
+  # 중복제거 - tuple로 묶어준 후 set()
+  a = []
+  a.append((element1, element2)) # ...반복
+  a = set(a)
   ```
 
 <br/>
@@ -397,6 +418,12 @@
   print(result)
   =====
   [('A', 'A'), ('A', 'B'), ('A', 'C'),('B', 'B'), ('B', 'C'), ('C', 'C')]
+  ```
+5. **2차원 배열의 경우**
+  ```python
+  # 이런식으로 새로운 튜플 배열을 만들어서 사용
+  coords = [(x, y) for x in range(n) for y in range(m) if arr[x][y] == 0]
+
   ```
 
 <br/>
