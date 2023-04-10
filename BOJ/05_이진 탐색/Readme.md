@@ -39,10 +39,8 @@
 
     # 이진 탐색 수행 결과 출력
     result = binary_search(array, target, 0, n - 1)
-    if result == None:
-        print("원소가 존재하지 않습니다.")
-    else:
-        print(result + 1)
+    if result == None: print("원소가 존재하지 않습니다.")
+    else: print(result + 1)
     ```
 4. 구현방법 2 - 반복문
     ```python
@@ -60,19 +58,9 @@
             else:
                 start = mid + 1
         return None
-
-    # n(원소의 개수)과 target(찾고자 하는 값)을 입력 받기
-    n, target = list(map(int, input().split()))
-    # 전체 원소 입력 받기
-    array = list(map(int, input().split()))
-
-    # 이진 탐색 수행 결과 출력
-    result = binary_search(array, target, 0, n - 1)
-    if result == None:
-        print("원소가 존재하지 않습니다.")
-    else:
-        print(result + 1)
     ```
+5. **bisect 클래스**
+- 단순히 정렬된 배열에서 특정한 데이터를 찾을 때는 직접 구현할 필요없이 표준라이브러리 사용
 
 <br><br>
 
@@ -97,3 +85,14 @@
 - 루트 노드에서 시작
 - 루트 값보다 작으면 왼쪽 노드 방문, 크다면 오른쪽 노드 방문
 - 자식 노드가 없을 때까지 찾지 못한다면 원소가 없는 것
+
+<br><br>
+
+## ❓ Parametric Search
+> 최적화 문제를 결정 문제로 바꾸어 해결하는 기법
+
+<br>
+
+1. **원하는 조건을 만족하는 가장 작은 알맞은 값을 찾는 문제**에 주로 이 기법을 사용
+2. 이진 탐색의 원리를 이용하여 절반씩 탐색 범위를 좁힌다.
+3. 원하는 조건을 만족하는가? -> 조건 만족 여부에 따라 범위를 좁혀가며 반복적으로 확인
