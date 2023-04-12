@@ -102,7 +102,7 @@
 
     print(max(dp))
     ```
-5. 이진 탐색 활용 - O(NlogN) => DP로 풀면 시간 초과가 날 때가 있음
+5. 이진 탐색 활용 - O(NlogN) => DP로만 풀면 시간 초과가 날 때가 있음
     ```python
     from bisect import bisect_left
 
