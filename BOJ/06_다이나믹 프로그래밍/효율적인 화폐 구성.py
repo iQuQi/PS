@@ -43,8 +43,7 @@ for i in range(10001):
   if make[i] == -1:
     min_money = 1e9
     for j in range(n):
-    # 인덱스 에러 막기
-      if make[i-money[j]] == -1: continue
+      if i-money[j] < 0 or make[i-money[j]] == -1: continue
       min_money = min(min_money, make[i-money[j]] + 1)
     if min_money != 1e9: make[i] = min_money
 
