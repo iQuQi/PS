@@ -373,6 +373,7 @@
 
 ### 1️⃣ 내장 함수
 > import 없이 사용. 없어서는 안될 필수적인 기능 포함
+> avg 없음!
 
 1. **sum()**: 모든 원소의 합을 반환
 2. **min()/max()**: 2개이상의 파라미터를 받아서 그 중 최소/최대값을 반환
@@ -476,6 +477,8 @@
 2. **bisect_right(a,x)**: 정렬된 순서를 유지하면서 리스트 a에 데이터 x를 삽입할 가장 오른쪽 인덱스 찾기 -> O(logN)
 3. **예시**
   ```python
+  from bisect import bisect_right, bisect_left
+  
   def count_by_range(a, left_val, right_val):
     right_index = bisect_right(a, right_val)
     left_index = bisect_left(a, left_val)

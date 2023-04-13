@@ -108,6 +108,7 @@
 
     n = int(input())
     arr = list(map(int, input().split()))
+    # 최장 증가 부분 수열 저장
     dp = [arr[0]]
 
     for i in range(n):

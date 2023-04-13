@@ -1,7 +1,7 @@
-#
-
-
-
+# N x N 크기의 복도에 선생님들과 학생들이 있다
+# 선생님은 상하좌우로 볼 수 있고, 시야는 무한대
+# 장애물 3개를 설치해서 학생들이 선생님들에게 위치를 들키지 않게하자
+# 가능하다면 YES, 불가능 하다면 NO 출력
 
 # ===============================
 from itertools import combinations
@@ -92,6 +92,57 @@ else:
 
 '''내 코드
 
+from itertools import combinations
+
+dx = [1, 0, -1, 0]
+dy = [0, 1, 0, -1]
+
+
+def watch(obstacles, arr, students, teachers):
+  arr_copy = [row[:] for row in arr]
+  for x, y in obstacles:
+    arr_copy[x][y] = 'O'
+
+  # 각 선생님들에 대해 모두 체크
+  for x, y in teachers:
+    # 상 하 좌 우
+    for t in range(4):
+      n_x = x # 이거 저장안해놓고 있어서 틀림...
+      n_y = y
+      # 영역을 벗어나거나 장애물을 만날 때까지 반복 & 학생을 만나면 TRUE
+      while True:
+        if n_x + dx[t] < 0 or n_x + dx[t] >= n or n_y + dy[t] < 0 or n_y + dy[t] >= n:
+          break
+        else:
+          n_x = n_x + dx[t]
+          n_y = n_y + dy[t]
+          if arr_copy[n_x][n_y] == 'O': break
+          if arr_copy[n_x][n_y] == 'S': return True
+
+  return False
+
+
+n = int(input())
+
+arr = []
+students = []
+teachers = []
+empty = []
+
+for x in range(n):
+  row = input().split()
+  for y, r in enumerate(row):
+    if r == 'X': empty.append((x, y))
+    if r == 'T': teachers.append((x, y))
+  arr.append(row)
+
+answer = 'NO'
+for case in combinations(empty, 3):
+  if not watch(case, arr, students, teachers): 
+    answer = 'YES'
+    break
+
+print(answer)
 
 
 '''
