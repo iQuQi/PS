@@ -56,6 +56,7 @@
 1. 변수 네이밍 시 키워드 사용 절대 금지 ex) str, input...
 2. division by zero 주의
 3. 제출 전 음수, 0, 양수, 최대값, 최소값 체크
+4. out of index 주의
 
 
 
