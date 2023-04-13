@@ -333,6 +333,10 @@
     sys.stdin.readline().rstrip()
     # readline()으로 입력 시 엔터가 줄 바꿈 기호로 입력되는데,
     # 이 공백 문자를 제거하려면 반드시 rstrip() 함수가 필요
+
+    # 일반적인 사용법 - int() 적용 시 개행문자까지 제거되서 rstrip 불필요
+    input = sys.stdin.readline
+    int(input())
     ```
 4. **기타 함수**
 
@@ -478,7 +482,7 @@
 3. **예시**
   ```python
   from bisect import bisect_right, bisect_left
-  
+
   def count_by_range(a, left_val, right_val):
     right_index = bisect_right(a, right_val)
     left_index = bisect_left(a, left_val)

@@ -95,7 +95,7 @@
     ```
 6. **개선된 다익스트라 코드** - 좀 더 까다롭지만 빠름 **O(ElogV)** (E는 간선)
 - **이거 사용!!! 무조건 암기!!!**
-- 1차원 배열 + 우선순위 큐 사용
+- 1차원 distance 배열 + 우선순위 큐 사용
 - heapq는 기본적으로 최소힙 -> 그대로 사용하면 됨
 - 시간 복잡도 계산
     - 힙의 삽입/삭제 모두 O(logN) -> N개의 노드를 모두 꺼냈다 빼기 O(NlogN)
@@ -106,7 +106,8 @@
 - 최단경로 문제 이외에도 두루 적용되는 소스 코드 형태니 잘 봐두자 ex) 최소 신장 트리 - 프림 알고리즘
     ```python
     from heapq import heappop, heappush
-    # 나머지는 위 코드와 동일 & get_smallest_node 함수 불필요
+    # 나머지는 위 코드와 동일 
+    # 단, get_smallest_node 함수 불필요 & visited 배열 불필요
 
     def dijkstra(start):
         q = []
