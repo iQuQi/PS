@@ -114,40 +114,41 @@
     ```
 - 리스트 중복 제거 => set()
 7. 2차원 배열 예외
-  ```python
-  # 복사 방법1. deepcopy() -> 코딩 테스트에서는 사용 불가...인줄 알았는데 아닌가봄
-  import copy
-  a = [[1,2],[3,4]]
-  b = copy.deepcopy(a)
-  
-  # 복사 방법2. 새로운 배열 생성 
-  a = [[1, 2], [3, 4]]
-  b = [arr[:] for arr in a]
-  ```
-  ```python
-  # count()
-  test=[0,0,0]
-  test2 = [[0,0,0]]
-  print(test.count(0), test2.count(0))
-  =======
-  3 0
-  ```
-  ```python
-  # 중복제거 - tuple로 묶어준 후 set()
-  a = []
-  a.append((element1, element2)) # ...반복
-  a = set(a)
-  ```
-  ```python
-  # 2차원 배열 정렬 -> key 넣어주기
-  a = [(1, 2), (0, 1), (5, 2), (5, 1), (3, 0)]
+    ```python
+    # 복사 방법1. deepcopy() -> 코딩 테스트에서는 사용 불가...인줄 알았는데 아닌가봄
+    import copy
+    a = [[1,2],[3,4]]
+    b = copy.deepcopy(a)
+    
+    # 복사 방법2. 새로운 배열 생성 
+    a = [[1, 2], [3, 4]]
+    b = [arr[:] for arr in a]
+    ```
+    ```python
+    # count()
+    test=[0,0,0]
+    test2 = [[0,0,0]]
+    print(test.count(0), test2.count(0))
+    =======
+    3 0
+    ```
+    ```python
+    # 중복제거 - tuple로 묶어준 후 set() 
+    # ex) 동일한 (x,y) 점이 들어가지 않도록 하기
+    a = []
+    a.append((element1, element2)) # ...반복
+    a = set(a)
+    ```
+    ```python
+    # 2차원 배열 정렬 -> key 넣어주기
+    a = [(1, 2), (0, 1), (5, 2), (5, 1), (3, 0)]
 
-  sorted(a) # 디폴트 - 0인덱스 먼저 그다음 1인덱스...
-  [(0, 1), (1, 2), (3, 0), (5, 1), (5, 2)]
+    sorted(a) # 디폴트 - 0인덱스 먼저 그다음 1인덱스...
+    [(0, 1), (1, 2), (3, 0), (5, 1), (5, 2)]
 
-  sorted(a, key=lambda x: x[0]) # 0 인덱스에 대해서만 정렬, 1인덱스 정렬 x
-  [(0, 1), (1, 2), (3, 0), (5, 2), (5, 1)]
-  ```
+    sorted(a, key=lambda x: x[0]) # 0 인덱스에 대해서만 정렬, 1인덱스 정렬 x
+    [(0, 1), (1, 2), (3, 0), (5, 2), (5, 1)]
+    ```
 
 <br/>
 
@@ -161,11 +162,11 @@
 - 곱셈: 'a' * 3 = 'aaa'
 - 내부적으로 리스트와 같이 처리되므로 **인덱싱과 슬라이싱**이 가능하다
 3. 문자열을 일정 길이로 자르기
-  ```python
-  length = N 
-  # range의 3번째 인자는 step
-  [arr[i:i + length] for i in range(0, len(arr), length)]
-  ```
+    ```python
+    length = N 
+    # range의 3번째 인자는 step 
+    [arr[i:i + length] for i in range(0, len(arr), length)]
+    ```
 4. 관련 함수
     사용법 | 설명 
     |---|---------|
@@ -283,7 +284,7 @@
     def add(a = 0,b = 0): # 디폴트
       print(a,b)
         
-    add(b=3, a=2) # 파라미터 지정, 이 경우 순서가 달라도 
+    add(b=3, a=2) # 파라미터 지정, 이 경우 순서가 달라도 됨
     
     ```
     
@@ -293,7 +294,7 @@
     a = 0
     
     def fun():
-      global a
+      global a # read만 할거면 global 키워드 없어도 됨
       a += 1
     
     ```
@@ -322,7 +323,7 @@
   - 한줄의 문자열 입력 (줄바꿈 단위) -> split()을 통해 공백 단위로 쪼개서 사용 가능
   - 문자열로 받기 때문에 자료형 변환이 필요
 2. **사용법 공식** *** 필수 암기
-  - list(map(int, input().split())) → int 대신 float, str
+  - list(map(int, input().split())) → int 대신 float, str 가능
   - 공백으로 구분된 데이터 개수가 많지 않다면 list() 없이 변수에 풀어서 받아도 됨
       - a, b, c = map(int, input().split())
       - split(':'): 구분자 지정 가능
@@ -342,7 +343,7 @@
 
     | 사용법 | 설명 |
     |----|------|
-    ord()| 유니코드를 정수로 변경. ( A -> 65, a -> 97 )
+    ord()| 유니코드를 정수로 변경. ( A -> 65, a -> 97 ), ordinal을 의미
     chr()| 정수를 유니코드로 변경. ( 65 -> A, 97 -> a )
     bool()| 0 = False, 나머지는 True (*실제로 print(False == 0) -> True)
 
@@ -377,7 +378,10 @@
 
 ### 1️⃣ 내장 함수
 > import 없이 사용. 없어서는 안될 필수적인 기능 포함
-> avg 없음!
+
+> 놀랍게도 avg 없음!
+
+<br>
 
 1. **sum()**: 모든 원소의 합을 반환
 2. **min()/max()**: 2개이상의 파라미터를 받아서 그 중 최소/최대값을 반환
@@ -399,48 +403,51 @@
 
 ### 2️⃣ itertools
 > 반복되는 형태의 데이터 처리
-1. **permutations**:
-  ```python
-  from itertools import permutations
-  data = ['A','B','C']
-  result = list(permutations(data, 3)) 
-  print(result)
-  =====
-  [('A','B','C'),('A','C','B'),('B','A','C'),('B','C','A'),('C','A','B'),('C','B','A')]
-  ```
-2. **combinations**:
-  ```python
-  from itertools import combinations
-  data = ['A','B','C']
-  result = list(combinations(data, 2)) 
-  print(result)
-  =====
-  [('A', 'B'), ('A', 'C'), ('B', 'C')]
-  ```
-3. **product**: 중복을 허용하는 순열
-  ```python
-  from itertools import product
-  data = ['A','B','C']
-  result = list(product(data, repeat=2)) 
-  print(result)
-  =====
-  [('A', 'A'), ('A', 'B'), ('A', 'C'),('B', 'A'), ('B', 'B'), ('B', 'C'),('C', 'A'), ('C', 'B'), ('C', 'C')]
-  ```
-4. **combinations_with_replacement**: 중복을 허용하는 조합
-  ```python
-  from itertools import combinations_with_replacement
-  data = ['A','B','C']
-  result = list(combinations_with_replacement(data, 2)) 
-  print(result)
-  =====
-  [('A', 'A'), ('A', 'B'), ('A', 'C'),('B', 'B'), ('B', 'C'), ('C', 'C')]
-  ```
-5. **2차원 배열의 경우**
-  ```python
-  # 이런식으로 새로운 튜플 배열을 만들어서 사용
-  coords = [(x, y) for x in range(n) for y in range(m) if arr[x][y] == 0]
 
-  ```
+<br>
+
+1. **permutations**:
+    ```python
+    from itertools import permutations
+    data = ['A','B','C']
+    result = list(permutations(data, 3)) 
+    print(result)
+    =====
+    [('A','B','C'),('A','C','B'),('B','A','C'),('B','C','A'),('C','A','B'),('C','B','A')]
+    ```
+2. **combinations**:
+    ```python
+    from itertools import combinations
+    data = ['A','B','C']
+    result = list(combinations(data, 2)) 
+    print(result)
+    =====
+    [('A', 'B'), ('A', 'C'), ('B', 'C')]
+    ```
+3. **product**: 중복을 허용하는 순열
+    ```python
+    from itertools import product
+    data = ['A','B','C']
+    result = list(product(data, repeat=2)) 
+    print(result)
+    =====
+    [('A', 'A'), ('A', 'B'), ('A', 'C'),('B', 'A'), ('B', 'B'), ('B', 'C'),('C', 'A'), ('C', 'B'), ('C', 'C')]
+    ```
+4. **combinations_with_replacement**: 중복을 허용하는 조합
+    ```python
+    from itertools import combinations_with_replacement
+    data = ['A','B','C']
+    result = list(combinations_with_replacement(data, 2)) 
+    print(result)
+    =====
+    [('A', 'A'), ('A', 'B'), ('A', 'C'),('B', 'B'), ('B', 'C'), ('C', 'C')]
+    ```
+5. **2차원 배열의 경우**
+    ```python
+    # 이런식으로 새로운 튜플 배열을 만들어서 사용
+    coords = [(x, y) for x in range(n) for y in range(m)]
+
+    ```
 
 <br/>
 
@@ -480,25 +487,25 @@
 1. **bisect_left(a,x)**: 정렬된 순서를 유지하면서 리스트 a에 데이터 x를 삽입할 가장 왼쪽 인덱스 찾기 -> O(logN)
 2. **bisect_right(a,x)**: 정렬된 순서를 유지하면서 리스트 a에 데이터 x를 삽입할 가장 오른쪽 인덱스 찾기 -> O(logN)
 3. **예시**
-  ```python
-  from bisect import bisect_right, bisect_left
+    ```python
+    from bisect import bisect_right, bisect_left
 
-  def count_by_range(a, left_val, right_val):
-    right_index = bisect_right(a, right_val)
-    left_index = bisect_left(a, left_val)
-    return right_index - left_index
+    def count_by_range(a, left_val, right_val):
+      right_index = bisect_right(a, right_val)
+      left_index = bisect_left(a, left_val)
+      return right_index - left_index
+      
+    a = [1,2,3,3,3,3,4,4,8,9]
     
-  a = [1,2,3,3,3,3,4,4,8,9]
-  
-  # 값이 4인 데이터 개수 출력
-  print(count_by_range(a,4,4)) 
-  ==== 
-  2
-  # 값이 [-1,3] 범위에 있는 데이터 개수 출력
-  print(count_by_range(a,-1,3)) 
-  ====
-  6
-  ```
+    # 값이 4인 데이터 개수 출력
+    print(count_by_range(a,4,4)) 
+    ==== 
+    2
+    # 값이 [-1,3] 범위에 있는 데이터 개수 출력
+    print(count_by_range(a,-1,3)) 
+    ====
+    6
+    ```
 
 <br/>
 
@@ -506,18 +513,18 @@
 > 유용한 자료구조 제공
 
 1. **deque**
-```python
-  from collections import deque
-  data = deque([2,3,4]) # deque()로 초기화 가능
-  data.appendleft(1)
-  data.append(5)
+    ```python
+      from collections import deque
+      data = deque([2,3,4]) # deque()로 초기화 가능
+      data.appendleft(1)
+      data.append(5)
 
-  print(data)
-  print(list(data))
-  =====
-  deque([1,2,3,4,5])
-  [1,2,3,4,5]
-  ```
+      print(data)
+      print(list(data))
+      =====
+      deque([1,2,3,4,5])
+      [1,2,3,4,5]
+    ```
     
 - 리스트 자료형은 삽입과 삭제를 '맨 뒤'원소를 기준으로 수행 => 앞쪽의 원소를 처리할 때는 많은 시간 소요
 - 비교
@@ -528,22 +535,22 @@
   가장 뒤쪽에 원소 추가|O(1)|O(1)
   가장 앞쪽의 원소 제거|O(N)|O(1)
   가장 뒤쪽의 원소 제거|O(1)|O(1)
- - 다만 리스트와 달리 인덱싱과 슬라이싱 사용 불가
- - 스택, 큐의 기능을 모두 포함
+- 다만 리스트와 달리 인덱싱과 슬라이싱 사용 불가
+- 스택, 큐의 기능을 모두 포함
     - stack: 원소 삽입 => append(), 원소 삭제 => pop()
     - queue: 원소 삽입 => append(), 원소 삭제 => popleft()
  
 2. **Counter**: 등장 횟수를 세는 기능
-  ```python
-  from collections import Counter
-  counter = Counter(['red','blue','red','green'])
-  
-  print(counter['blue'])
-  print(dict(counter))
-  =====
-  1
-  {'red':2, 'blue':1, 'green': 1}
-  ```
+    ```python
+    from collections import Counter
+    counter = Counter(['red','blue','red','green'])
+    
+    print(counter['blue'])
+    print(dict(counter))
+    =====
+    1
+    {'red':2, 'blue':1, 'green': 1}
+    ```
 
 <br/>
 
