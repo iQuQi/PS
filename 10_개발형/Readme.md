@@ -49,10 +49,10 @@
 <br>
 
 ## URL vs URI
-1. URI
+1. **URI**
 - 특정 리소스를 식별하는 통합 자원 식별자(Uniform Resource Identifier)를 의미
 - 웹 기술에서 사용하는 논리적 또는 물리적 리소스를 식별하는 고유한 문자열 시퀀스
-2. URL 
+2. **URL** 
 - 흔히 웹 주소라고도 함
 - 컴퓨터 네트워크 상에서 리소스가 어디 있는지 알려주기 위한 규약 
 - URI의 서브셋
@@ -66,7 +66,7 @@
 1. REST API를 사용할 때 일반적으로 사용하는 데이터 형식
 2. 이름대로, 자바스크립트에서 객체를 만들때 사용하는 표현식과 동일한 형태
 3. 키-값 쌍으로 이루어짐 -- 사전 자료형과 흡사
-4. 파이썬에서는 JSON 기본 라이브러리 제공
+4. 파이썬에서는 **JSON 기본 라이브러리** 제공
 - import json
 - 인코딩 = 파이썬 기본 자료형을 JSON 객체로 변환하는 작업 => json.dumps(data)
 - 디코딩 = JSON 객체를 파이썬 기본 자료형으로 변환하는 작업 => json.loads(data)
@@ -82,21 +82,21 @@
 ## 파이썬으로 REST API 호출 연습하기
 
 1. JSON 모킹 사이트를 활용해서 연습가능
-2. 모킹(Mocking): 어떠한 기능이 있는 것 처럼 흉내내어 구현한 것
-3. 파싱(Parsing): 특정한 형식으로 저장된 데이터에 접근해서 원하는 정보만 찾아서 가공하는 작업
+2. **모킹(Mocking)**: 어떠한 기능이 있는 것 처럼 흉내내어 구현한 것
+3. **파싱(Parsing)**: 특정한 형식으로 저장된 데이터에 접근해서 원하는 정보만 찾아서 가공하는 작업
 4. 사용 예시
-  ```python
-  import requests
-  
-  target = 'https://jsonplaceholder.typicode.com/users'
-  response = requests.get(url = target)
-  
-  data = response.json()
-  
-  name_list = []
-  for user in data:
-    name_list.append(user['name'])
-  ```
+      ```python
+      import requests
+
+      target = 'https://jsonplaceholder.typicode.com/users'
+      response = requests.get(url = target)
+
+      data = response.json()
+
+      name_list = []
+      for user in data:
+        name_list.append(user['name'])
+      ```
 
 
 <br><br>
