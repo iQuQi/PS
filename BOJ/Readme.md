@@ -558,12 +558,12 @@
 > 필수적인 수학적 기능을 제공
 
 | 함수 | 설명
-| ----|------|
+| -----|------|
 math.pi | 파이
 math.e | 자연상수
-math.ceil(x) |	x를 올림하여 정수값을 반환
-math.floor(x)|	x를 내림하여 정수값을 반환
-math.trunc(x)|  x의 소수점을 자른 후 정수값을 반환
+math.ceil(x)⭐️|	x를 올림하여 정수값을 반환
+math.floor(x)⭐️|	x를 내림하여 정수값을 반환
+math.trunc(x)⭐️|  x의 소수점을 자른 후 정수값을 반환
 math.copysign(x, y)|	x값의 절댓값에 y의 부호를 갖는 유리수를 반환
 math.comb(n, k)|	nCk과 같은 조합 값을 반환 (n개의 수에서 k개를 선택)
 math.perm(n, k)|	nPk와 같은 순열 값을 반환 (n개의 수에서 k를 꺼내 순서대로 나열)
@@ -571,12 +571,12 @@ math.factorial(x)|	x의 팩토리얼을 반환 (1*2*3*...*x)
 math.fmod(x, y)|	x에 y를 나눈 후 나머지를 제공 (부동소수점 연산에 사용)
 math.fsum(iterable)|	이터러블(iterable)에 있는 값의 정확한 부동 소수점 합을 반환
 math.prod(iterable)|	이터러블(iterable)의 모든 수의 곱을 반환 (빈 경우 1을 반환)
-math.gcd(integers)|	여러개의 정수를 받아 최대 공약수를 반환
-math.lcm(integers)| 여러개의 정수를 받아 최소 공약수를 반환
-math.isclose(a, b)|	두 실수가 같은지 판단하는 정확한 함수
+math.gcd(integers)⭐️|	여러개의 정수를 받아 최대 공약수를 반환
+math.lcm(integers)⭐️| 여러개의 정수를 받아 최소 공약수를 반환
+math.isclose(a, b)⭐️|	두 실수가 같은지 판단하는 정확한 함수
 math.isfinite(x)|	x값이 무한하거나 Nan(Not a number) 일경우 True 값을 반환
-math.isinf(x)|	x가 양 또는 음의 무한대이면 True, 반대일 경우 False를 반환
-math.isnan(x)|	x가 Nan(Not a number)일경우 True, 반대일 경우 False를 반환
-math.sqrt(n)| 제곱근 반환
+math.isinf(x)|x가 양 또는 음의 무한대이면 True, 반대일 경우 False를 반환
+math.isnan(x)⭐️|x가 Nan(Not a number)일경우 True, 반대일 경우 False를 반환
+math.sqrt(n)⭐️| 제곱근 반환
 math.modf(x)|	x의 (소수, 정수)부분으로 반환, 정수부분은 float로 반환
 
