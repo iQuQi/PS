@@ -126,6 +126,8 @@ def quick_sort(array):
 ## 🧮 계수 정렬
 > 특정한 값을 가지는 데이터의 개수를 '카운트'하는 방법
 
+![계수정렬](https://blog.kakaocdn.net/dn/vurcx/btqFPrXv8rg/kFWVlJLIPZNzvVaFRZ7G51/img.gif)
+
 ```Python
 # 모든 원소의 값이 0보다 크거나 같다고 가정
 array = [7, 5, 9, 0, 3, 1, 6, 2, 9, 1, 4, 8, 0, 5, 2]
