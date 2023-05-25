@@ -102,8 +102,8 @@
     사용법 | 설명 | 시간 복잡도
     |---|------|---|
     append(값)| 맨 뒤에 원소 하나 삽입|O(1)
-    extend(값)| 리스트 연장| - |
-    pop(index)|해당 인덱스에 원소 제거. 기본값은 -1|O(1)
+    extend(값)| 리스트 연장| O(len(…)) - 확장 길이에 따라 |
+    pop(index)|해당 인덱스에 원소 제거. 기본값은 -1|pop()의 경우 O(1), 그 외의 인덱스는 O(N)
     sort()|오름차순 정렬. reverse = True 인자를 넣어주면 내림차순 정렬 & key 인자로 정렬 함수 넣어주기 가능 | O(NlogN)
     reverse()|원소의 순서를 모두 뒤집기|O(N)
     insert(삽입할 인덱스, 값)|특정위치에 원소 삽입 |O(N)
@@ -184,6 +184,7 @@
     lower()/upper()|소문자/대문자로 변경
     islower()/isupper()|소문자/대문자인지 판별
     'A'.rjust(N, 'B')| 문자열을 N길이로 맞추기 위해 B 문자열을 삽입 ex) N=3 B=0 A=2 => 002
+    'A'.ljust(N, 'B')| rjust가 오른쪽 정렬이라면, ljust는 왼쪽정렬. A문자열 자체를 바꾸는 게 아님. 새 문자열 반환!
     'A'.zfill(N)| 문자열을 N길이로 맞추기 위해 0 삽입
     re.sub('[^a-z0-9]', '', str)|re.sub('패턴', '바꿀문자열', '적용할문자열')<br>정규식을 활용해서 특수문자 제거하기
 
@@ -480,6 +481,7 @@
     # 예시 - 튜플 힙
     heapq.heappush(q, (3, 22))
     heapq.heappush(q, (2, 30))
+    # [참고] heapq.heapify 함수도 import 가능
 
     print(q[0])
     result = sorted(q, key =  lambda x: x[1])
