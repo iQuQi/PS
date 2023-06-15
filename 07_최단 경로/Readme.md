@@ -84,15 +84,6 @@
 
     # 다익스트라 알고리즘을 수행
     dijkstra(start)
-
-    # 모든 노드로 가기 위한 최단 거리를 출력
-    for i in range(1, n + 1):
-        # 도달할 수 없는 경우, 무한(INFINITY)이라고 출력
-        if distance[i] == INF:
-            print("INFINITY")
-        # 도달할 수 있는 경우 거리를 출력
-        else:
-            print(distance[i])
     ```
 6. **개선된 다익스트라 코드** - 좀 더 까다롭지만 빠름 **O(ElogV)** (E는 간선)
 - **이거 사용!!! 무조건 암기!!!**
