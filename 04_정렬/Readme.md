@@ -162,6 +162,8 @@ for i in range(len(count)): # 리스트에 기록된 정렬 정보 확인
 퀵 정렬 | O(NlogN) | O(N) | 대부분의 경우의 적합하나 거의 정렬된 데이터의 경우 느림
 계수 정렬 | O(N+K) | O(N+K) | 데이터의 크기가 한정되어 있는 경우에만 사용 가능하나, 매우 빠름
 
+![KakaoTalk_Photo_2023-06-17-23-38-39-1](https://github.com/iQuQi/PS/assets/69742775/8e33cb0b-eace-4e67-ba2a-f3503573085a)
+
 <br/><br/>
 
 ## 💡 파이썬의 기본 정렬 라이브러리
