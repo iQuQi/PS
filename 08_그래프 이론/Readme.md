@@ -50,12 +50,12 @@
 
     # 두 원소가 속한 집합을 합치기
     def union_parent(parent, a, b):
-        a = find_parent(parent, a)
-        b = find_parent(parent, b)
-        if a < b:
-            parent[b] = a
+        p_a = find_parent(parent, a)
+        p_b = find_parent(parent, b)
+        if p_a < p_b:
+            parent[p_b] = p_a
         else:
-            parent[a] = b
+            parent[p_a] = p_b
 
     # 노드의 개수와 간선(Union 연산)의 개수 입력 받기
     v, e = map(int, input().split())
