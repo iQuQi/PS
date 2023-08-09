@@ -181,3 +181,151 @@ for i in range(len(count)): # 리스트에 기록된 정렬 정보 확인
 3. **더 빠른 정렬이 필요한 문제** -> 계수 정렬 사용 or 기존 알고리즘 구조 개선
 
 
+<br/><br/><br/><br/>
+
+# ⭐️ 정렬 알고리즘 추가
+
+## 버블정렬
+
+```
+- 인접한 두 원소를 비교하여 큰 값이 오른쪽으로 이동하도록 하는 정렬 알고리즘
+- 시간 복잡도는 최악의 경우 O(n^2)
+```
+
+![버블](https://blog.kakaocdn.net/dn/bUriug/btq090GyQBk/YU1pmyrtM6gypU0kvrQ3dk/img.gif)
+
+```python
+def bubbleSort(arr):
+    n = len(arr) # 배열의 크기를 측정
+
+    # 배열의 크기만큼 반복
+    for i in range(n):
+        
+        # 배열의 총 크기에서 i의 값과 1을 뺀 만큼 반복
+        for j in range(0, n - i - 1):
+            
+            # 만약 현재 인덱스의 값이 다음 인덱스의 값보다 클경우 실행
+            if arr[j] > arr[j + 1]: 
+                arr[j], arr[j + 1] = arr[j + 1], arr[j] # 서로 위치를 변환
+```
+
+## 병합정렬
+```
+- 분할 정복(divide and conquer) 방법을 사용하여 리스트를 정렬하는 알고리즘
+- 시간 복잡도는 항상 O(nlogn)
+```
+
+![병합정렬](https://blog.kakaocdn.net/dn/do8Hzv/btqFPrQKdH9/l3H2t7nDmJImB5pB3B9fL0/img.gif)
+
+```python
+def merge_sort(arr):
+    if len(arr) < 2:
+        return arr
+
+    mid = len(arr) // 2
+    low_arr = merge_sort(arr[:mid])
+    high_arr = merge_sort(arr[mid:])
+
+    merged_arr = []
+    l = h = 0
+    while l < len(low_arr) and h < len(high_arr):
+        if low_arr[l] < high_arr[h]:
+            merged_arr.append(low_arr[l])
+            l += 1
+        else:
+            merged_arr.append(high_arr[h])
+            h += 1
+    merged_arr += low_arr[l:]
+    merged_arr += high_arr[h:]
+    return merged_arr
+```
+
+## 힙정렬
+```
+- 힙(heap) 자료구조를 사용하여 리스트를 정렬하는 알고리즘
+- 주어진 리스트를 최대 힙(max heap)으로 구성
+- 그 다음으로 한 번에 하나씩 요소를 힙에서 꺼내서 배열의 뒤부터 저장
+- 시간 복잡도는 항상 O(nlogn)
+```
+
+![힙정렬](https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjhfMjEw/MDAxNTkzMzA2MDg4Nzc1.Wk6dwd3t967xoOv84aZyiMPqplEwef8MKCxSpQXu-70g.aab0ABPQt34a9cctRq48hQ-eAw9Jez9wHpfA9lBxm0Mg.GIF.adamdoha/max_heap_deletion_animation.gif?type=w800)
+
+```python
+def heap_sort(unsorted):
+    # 리스트에 전체 길이를 받음
+    n = len(unsorted)
+
+    # // 연산자 : 몫 구하기
+    # 이진트리를 구하기 때문에 전체 크기의 반만 반복
+    # for문을 거꾸로 돌아감
+    # 이진트리의 가장 아래서부터 heapify를 실행하여 힙 구조를 만듬
+
+    for i in range(n // 2 - 1, -1, -1):
+        heapify(unsorted, i, n)
+
+    # 마지막 노드부터 루트노드를 기준으로 값을 스위치하면서 정렬
+    for i in range(n - 1, 0, -1):
+        unsorted[0], unsorted[i] = unsorted[i], unsorted[0]
+        # 원래라면 힙은 1번인덱스부터 시작해야하지만 0번인덱스에 더미데이터를 넣는 것을 막기위해
+        # 0을 루트로 사용한다. (아래 사진 참고)
+        heapify(unsorted, 0, i)
+    return unsorted
+```
+```python
+def heapify(unsorted, index, heap_size):
+
+    largest = index
+
+    left_index = 2 * index
+    right_index = 2 * index +1
+
+    # 자식노드가 범위안에 드는지 확인, 자식노드가 부모노드보다 큰지 확인
+    # 자식노드가 부모노드보다 크다면 인덱스 스위치
+
+    if left_index < heap_size and unsorted[left_index] > unsorted[largest]:
+        largest = left_index
+
+    if right_index < heap_size and unsorted[right_index] > unsorted[largest]:
+        largest = right_index
+   
+    # 부모노드의 인덱스값이 바뀌었다면 자식노드의 값과 스위치
+
+    if largest != index:
+        unsorted[largest], unsorted[index] = unsorted[index], unsorted[largest]
+        # 재귀 함수
+        heapify(unsorted, largest, heap_size)
+```
+
+## 기수정렬
+```
+- 비교 정렬 알고리즘이 아닌, 자리수를 기준으로 정렬하는 알고리즘
+- 각 자리수를 순서대로 비교하여 정렬하는 것이 아니라, 각 자리수에 대한 빈도수를 계산하여 정렬
+- 시간 복잡도는 O(dn) (d는 데이터의 자리수, n은 데이터의 개수)
+- 매우 빠른 속도로 정렬하지만, 메모리를 많이 사용
+```
+
+![기수정렬](https://blog.kakaocdn.net/dn/DWH0S/btqFOYnIbCu/Q7HOAOzzvlD4xW279LqTLK/img.gif)
+
+```python
+from collections import deque
+
+def radix_sort(nums):
+    buckets = [deque() for _ in range(10)]
+
+    max_val = max(nums)
+    Q = deque(nums)
+    cur_ten = 1
+
+    while max_val >= cur_ten:
+        while Q:
+            num = Q.popleft()
+            buckets[(num // cur_ten) % 10].append(num)
+
+        for bucket in buckets:
+            while bucket:
+                Q.append(bucket.popleft())
+
+        cur_ten *= 10
+
+    return list(Q)
+```
