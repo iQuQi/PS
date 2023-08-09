@@ -17,7 +17,7 @@
 # 수학 - 소수 & 투 포인터
 import math
 
-n = int(input()) # 2부터 1,000까지의 모든 수에 대하여 소수 판별
+n = int(input()) 
 array = [True for i in range(n + 1)] # 처음엔 모든 수가 소수(True)인 것으로 초기화
 
 # 에라토스테네스의 체 알고리즘 
@@ -29,6 +29,7 @@ for i in range(2, int(math.sqrt(n)) + 1): # 2부터 n의 제곱근까지의 모�
             array[i * j] = False
             j += 1
 
+# 0,1 은 소수 아님
 sosu = [idx+2 for idx,i in enumerate(array[2:]) if i == True]
 
 total = 0

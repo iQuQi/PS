@@ -10,6 +10,6 @@ for s in input_:
   if s.isdigit(): numbers += int(s)
   else: result += s
 
-# 0일때는 붙이면 안됨
+# 주의: 0일때는 붙이면 안됨
 if numbers > 0: result += str(numbers)
 print(result)
