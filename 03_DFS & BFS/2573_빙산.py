@@ -86,7 +86,7 @@ year = 0
 while True: 
   count = 0
   visited = [[False]*m for _ in range(n)]
-  next_year = copy.deepcopy(board)
+  next_year = copy.deepcopy(board) # 이렇게 안하면 옆에서 녹아버려서 생긴 바다로 인해서 다음칸이 더 녹아버리는 현상 발생 -> 한해가 가면 그 전 해의 상태를 기준으로 녹아야함
   
   for i in range(n):
     for j in range(m):

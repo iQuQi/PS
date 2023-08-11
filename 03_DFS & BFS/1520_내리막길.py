@@ -43,7 +43,7 @@ def dfs(graph, path, now):
 
     nh = board[ny][nx]
     if not nh < h: continue 
-    # 오답이유2: path[ny][nx] != -1로 함 -> 0도 이미 계산된 칸이므로 dp 값을 써야 함
+    # 오답이유2: path[ny][nx] != 0로 함 -> 0도 이미 계산된 칸이므로 dp 값을 써야 함
     elif path[ny][nx] >= 0: 
       temp_path += path[ny][nx]
     else: 
