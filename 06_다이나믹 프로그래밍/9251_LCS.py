@@ -11,6 +11,7 @@ LCS(Longest Common Subsequence, 최장 공통 부분 수열)문제는
 '''
 
 # 못품..
+# dp[i][j] =  str1에서 i까지, str2에서 j까지 봤을 때 공통 subsequence 중 가장 긴 것의 길이
 # i는 고정된 채로 j를 늘려가며 비교하는 경우 같은 글자가 나오면 무조건 +1을 하고 
 # 아니라면 dp[i-1][j]와 dp[i][j-1] 중 큰 수로 정하기
 S1 = list(input())
