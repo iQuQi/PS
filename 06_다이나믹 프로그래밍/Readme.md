@@ -178,7 +178,7 @@
    dp = [arr[0]]
 
    for i in range(n):
-       if arr[i] > dp[-1]:
+       if arr[i] > dp[-1]: # 크거나같다고 하면 안됨. 크다!
            dp.append(arr[i])
        else:
            idx = bisect_left(dp, arr[i])

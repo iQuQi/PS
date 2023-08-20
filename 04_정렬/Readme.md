@@ -175,7 +175,7 @@ for i in range(len(count)): # 리스트에 기록된 정렬 정보 확인
 
 ## 📝 정렬 알고리즘 총 정리
 
-![사진](https://raw.githubusercontent.com/junghyun100/junghyun100.github.io/master/images/%EC%8B%9C%EA%B0%84%EB%B3%B5%EC%9E%A1%EB%8F%84/%EC%8B%9C%EA%B0%84%EB%B3%B5%EC%9E%A1%EB%8F%84.PNG)
+![사진](https://github.com/iQuQi/easyPlant/assets/69742775/a513725a-5062-42d1-9dd3-1d6baed94dd7)
 <br/><br/>
 
 ## 💡 파이썬의 기본 정렬 라이브러리
