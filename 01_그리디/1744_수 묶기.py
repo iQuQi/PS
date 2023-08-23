@@ -21,35 +21,34 @@ n = int(input())
 arr = []
 # 수열 입력받기
 for i in range(n):
-  a = int(input())
-  arr.append(a)
+    a = int(input())
+    arr.append(a)
 positive = [a for a in arr if a > 0]
 negative = [a for a in arr if a <= 0]
-positive.sort(reverse = True)
+positive.sort(reverse=True)
 negative.sort()
 
 total = 0
 # 양수 배열 - 가장 큰 수를 기준으로 정렬하여 곱 (1은 무조건 더한다)
-for i in range(0,len(positive),2):
-  # 짝이 없는 경우 그냥 더하기
-  if i == len(positive)-1:
-    total += positive[i]
-  # 더 커지는 방법으로 계산
-  else:
-    if positive[i]+positive[i+1] < positive[i]*positive[i+1]:
-      total += (positive[i]*positive[i+1])
+for i in range(0, len(positive), 2):
+    # 짝이 없는 경우 그냥 더하기
+    if i == len(positive)-1:
+        total += positive[i]
+    # 더 커지는 방법으로 계산
     else:
-      total += positive[i]
-      total += positive[i+1]
+        if positive[i]+positive[i+1] < positive[i]*positive[i+1]:
+            total += (positive[i]*positive[i+1])
+        else:
+            total += positive[i]
+            total += positive[i+1]
 
 # 음수 배열 - 가장 작은 수를 기준으로 정렬하여 곱 (0을 음수배열에 넣어야 음수가 하나 남았을때 곱해서 없앨 수 있음)
-for i in range(0,len(negative),2):
-  # 짝이 없는 경우 그냥 더하기
-  if i == len(negative)-1:
-    total += negative[i]
-  # 더 커지는 방법으로 계싼
-  else:
-    total += (negative[i]*negative[i+1])
-      
+for i in range(0, len(negative), 2):
+    # 짝이 없는 경우 그냥 더하기
+    if i == len(negative)-1:
+        total += negative[i]
+    # 더 커지는 방법으로 계싼
+    else:
+        total += (negative[i]*negative[i+1])
+
 print(total)
-    

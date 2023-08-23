@@ -9,7 +9,7 @@
 import heapq
 import sys
 input = sys.stdin.readline
-INF = int(1e9) # 무한을 의미하는 값으로 10억을 설정
+INF = int(1e9)  # 무한을 의미하는 값으로 10억을 설정
 
 # 노드의 개수, 간선의 개수, 시작 노드를 입력받기
 n, m, start = map(int, input().split())
@@ -24,12 +24,13 @@ for _ in range(m):
     # X번 노드에서 Y번 노드로 가는 비용이 Z라는 의미
     graph[x].append((y, z))
 
+
 def dijkstra(start):
-   q = []
-   # 시작 노드로 가기 위한 최단 경로는 0으로 설정하여, 큐에 삽입
-   heapq.heappush(q, (0, start))
-   distance[start] = 0
-   while q: # 큐가 비어있지 않다면
+    q = []
+    # 시작 노드로 가기 위한 최단 경로는 0으로 설정하여, 큐에 삽입
+    heapq.heappush(q, (0, start))
+    distance[start] = 0
+    while q:  # 큐가 비어있지 않다면
         # 가장 최단 거리가 짧은 노드에 대한 정보를 꺼내기
         dist, now = heapq.heappop(q)
         if distance[now] < dist:
@@ -41,6 +42,7 @@ def dijkstra(start):
             if cost < distance[i[0]]:
                 distance[i[0]] = cost
                 heapq.heappush(q, (cost, i[0]))
+
 
 # 다익스트라 알고리즘을 수행
 dijkstra(start)

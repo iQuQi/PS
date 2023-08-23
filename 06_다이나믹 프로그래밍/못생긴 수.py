@@ -16,6 +16,10 @@ for l in range(1, n):
     # 가능한 곱셈 결과 중에서 가장 작은 수를 선택
     ugly[l] = min(next2, next3, next5)
     # 인덱스에 따라서 곱셈 결과를 증가
+
+    # if-else 가 아니라 if-if 구조인 이유?
+    # 예를 들어, 2x3과 3x2는 같은 값이므로 next2와 next3이 같을 수 있음
+    # 6을 뽑아쓰고 i2, i3을 모두 1씩 증가하고 next2, next3을 갱신해야함
     if ugly[l] == next2:
         i2 += 1
         next2 = ugly[i2] * 2

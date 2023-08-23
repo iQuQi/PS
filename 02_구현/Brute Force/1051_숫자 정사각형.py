@@ -25,5 +25,5 @@ for i in range(n):
             # 파이썬은 == == == 연산 계속 가능...!
             if ((i + k) < n) and ((j + k) < m) and (arr[i][j] == arr[i][j + k] == arr[i + k][j] == arr[i + k][j + k]):
                 answer = max(answer, (k + 1)**2)
-                
+
 print(answer)

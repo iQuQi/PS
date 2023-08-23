@@ -11,8 +11,10 @@ def find_parent(parent, x):
     if parent[x] != x:
         parent[x] = find_parent(parent, parent[x])
     return parent[x]
- 
+
 # 두 원소가 속한 집합을 합치기
+
+
 def union_parent(parent, a, b):
     a = find_parent(parent, a)
     b = find_parent(parent, b)
@@ -20,10 +22,11 @@ def union_parent(parent, a, b):
         parent[b] = a
     else:
         parent[a] = b
- 
+
+
 # 노드의 개수와 간선의 개수 입력받기
 n, m = map(int, input().split())
-parent = [0] * (n + 1) # 부모 테이블 초기화
+parent = [0] * (n + 1)  # 부모 테이블 초기화
 
 # 모든 간선을 담을 리스트와, 최종 비용을 담을 변수
 edges = []
@@ -41,7 +44,7 @@ for _ in range(m):
 
 # 간선을 비용순으로 정렬
 edges.sort()
-total = 0 # 전체 가로등 비용
+total = 0  # 전체 가로등 비용
 
 # 간선을 하나씩 확인하며
 for edge in edges:

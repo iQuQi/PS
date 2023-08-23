@@ -12,8 +12,10 @@ def find_parent(parent, x):
     if parent[x] != x:
         parent[x] = find_parent(parent, parent[x])
     return parent[x]
- 
+
 # 두 원소가 속한 집합을 합치기
+
+
 def union_parent(parent, a, b):
     a = find_parent(parent, a)
     b = find_parent(parent, b)
@@ -21,10 +23,11 @@ def union_parent(parent, a, b):
         parent[b] = a
     else:
         parent[a] = b
- 
+
+
 # 노드의 개수 입력받기
 n = int(input())
-parent = [0] * (n + 1) # 부모 테이블 초기화
+parent = [0] * (n + 1)  # 부모 테이블 초기화
 
 # 모든 간선을 담을 리스트와, 최종 비용을 담을 변수
 edges = []
@@ -68,8 +71,6 @@ for edge in edges:
         result += cost
 
 print(result)
-
-
 
 
 '''내코드

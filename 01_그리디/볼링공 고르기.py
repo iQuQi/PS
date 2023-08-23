@@ -6,7 +6,7 @@
 # 예를 들어 M = 7이고 각 무게의 공의 개수가 [a,b,c,d,e,f,g] 이렇다면,
 # A가 1번을 골랐을 때의 수 = a * (b+c+d+e+f+g) = a * (모든 공의 개수 - a)
 
-#=====================
+# =====================
 
 n, m = map(int, input().split())
 data = list(map(int, input().split()))
@@ -21,7 +21,7 @@ for x in data:
 result = 0
 # 1부터 m까지의 각 무게에 대하여 처리
 for i in range(1, m + 1):
-    n -= array[i] # 무게가 i인 볼링공의 개수(A가 선택할 수 있는 개수) 제외
-    result += array[i] * n # B가 선택하는 경우의 수와 곱해주기
+    n -= array[i]  # 무게가 i인 볼링공의 개수(A가 선택할 수 있는 개수) 제외
+    result += array[i] * n  # B가 선택하는 경우의 수와 곱해주기
 
 print(result)

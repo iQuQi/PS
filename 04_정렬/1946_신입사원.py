@@ -18,26 +18,25 @@
 T = int(input())
 
 for t in range(T):
-  N = int(input())
+    N = int(input())
 
-  rank = []
+    rank = []
 
-  for n in range(N):
-    s,m = map(int,input().split())
-    rank.append((s,m,n))
+    for n in range(N):
+        s, m = map(int, input().split())
+        rank.append((s, m, n))
 
-  sorted_s = sorted(rank,key = lambda x:x[0])
-  sorted_m = sorted(rank,key = lambda x:x[1])
-  
-  count = 0
-  max_m_rank = N+1
-  
-  # 서류 순위가 높은 사람부터 검사
-  # 서류 1등을 제외하고는 면접 순위가 현재까지의 면접 최고 순위보다 높아야 뽑힐 수 있음
-  for s,m,n in sorted_s:
-    if rank[n][1] < max_m_rank:
-      count += 1
-      max_m_rank = rank[n][1]
+    sorted_s = sorted(rank, key=lambda x: x[0])
+    sorted_m = sorted(rank, key=lambda x: x[1])
 
-  print(count)
-  
+    count = 0
+    max_m_rank = N+1
+
+    # 서류 순위가 높은 사람부터 검사
+    # 서류 1등을 제외하고는 면접 순위가 현재까지의 면접 최고 순위보다 높아야 뽑힐 수 있음
+    for s, m, n in sorted_s:
+        if rank[n][1] < max_m_rank:
+            count += 1
+            max_m_rank = rank[n][1]
+
+    print(count)

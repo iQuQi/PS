@@ -16,7 +16,7 @@ for _ in range(m):
 
 # 모든 도시에 대한 최단 거리 초기화
 distance = [-1] * (n + 1)
-distance[x] = 0 # 출발 도시까지의 거리는 0으로 설정
+distance[x] = 0  # 출발 도시까지의 거리는 0으로 설정
 
 # 너비 우선 탐색(BFS) 수행
 q = deque([x])
@@ -40,8 +40,6 @@ for i in range(1, n + 1):
 # 만약 최단 거리가 K인 도시가 없다면, -1 출력
 if check == False:
     print(-1)
-
-
 
 
 '''내코드

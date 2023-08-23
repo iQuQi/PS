@@ -14,26 +14,27 @@
 # 백트래킹 문제 -> 조합으로 풀면 쉽게 풀리는 문제긴 함
 
 
-def backtracking(arr,depth, select, k):
-  if len(select) == 6:
-    print(' '.join(list(map(str,select))))
-    return
-  if depth >= len(arr):
-    return
-  
-  for t in range(1,-1,-1):
-    if t == 1: 
-      backtracking(arr,depth+1, select + [arr[depth]], k)
-    else:
-      backtracking(arr,depth+1, select, k)
+def backtracking(arr, depth, select, k):
+    if len(select) == 6:
+        print(' '.join(list(map(str, select))))
+        return
+    if depth >= len(arr):
+        return
+
+    for t in range(1, -1, -1):
+        if t == 1:
+            backtracking(arr, depth+1, select + [arr[depth]], k)
+        else:
+            backtracking(arr, depth+1, select, k)
 
 
 while True:
-  num = list(map(int,input().split()))
-  k = num[0]
+    num = list(map(int, input().split()))
+    k = num[0]
 
-  if k == 0: break
-  S = num[1:]
+    if k == 0:
+        break
+    S = num[1:]
 
-  backtracking(S,0,[],k)
-  print()
+    backtracking(S, 0, [], k)
+    print()

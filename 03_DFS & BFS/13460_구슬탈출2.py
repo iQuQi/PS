@@ -23,6 +23,7 @@
 
 from collections import deque
 
+
 def init():
     rx, ry, bx, by = 0, 0, 0, 0
     for i in range(n):
@@ -47,7 +48,8 @@ def move(x, y, dx, dy):
 def bfs():
     while q:
         crx, cry, cbx, cby, cnt = q.popleft()
-        if cnt > 10: break
+        if cnt > 10:
+            break
         for i in range(4):
             nrx, nry, rc = move(crx, cry, *d[i])  # 빨간 구슬 굴려
             nbx, nby, bc = move(cbx, cby, *d[i])  # 파란 구슬 굴려
@@ -63,7 +65,7 @@ def bfs():
                         nbx -= d[i][0]
                         nby -= d[i][1]
                 if not visited[nrx][nry][nbx][nby]:
-                    visited[nrx][nry][nbx][nby] = True # visited 4차원 배열 주목
+                    visited[nrx][nry][nbx][nby] = True  # visited 4차원 배열 주목
                     q.append((nrx, nry, nbx, nby, cnt + 1))
     print(-1)  # 결국 빨간 구슬 구멍에 못 넣었으면 실패
 
@@ -72,7 +74,8 @@ d = [(-1, 0), (1, 0), (0, 1), (0, -1)]
 q = deque()
 n, m = map(int, input().split())
 graph = [list(input()) for _ in range(n)]
-visited = [[[[False] * m for _ in range(n)] for _ in range(m)] for _ in range(n)]
+visited = [[[[False] * m for _ in range(n)]
+            for _ in range(m)] for _ in range(n)]
 
 init()
 bfs()

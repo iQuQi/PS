@@ -20,34 +20,34 @@ N과 주사위에 쓰여 있는 수가 주어질 때,
 
 
 n = int(input())
-dice = list(map(int,input().split()))
+dice = list(map(int, input().split()))
 min_lists = []
 
 if n == 1:
-  dice_sum = sum(dice)
-  dice_max = max(dice)
-  print(dice_sum - dice_max)
+    dice_sum = sum(dice)
+    dice_max = max(dice)
+    print(dice_sum - dice_max)
 
-else: 
-  # min 구하는 과정이 중요!!!!!
-  min_lists.append(min(dice[0], dice[5]))
-  min_lists.append(min(dice[1], dice[4]))
-  min_lists.append(min(dice[2], dice[3]))
-  min_lists.sort()
+else:
+    # min 구하는 과정이 중요!!!!!
+    min_lists.append(min(dice[0], dice[5]))
+    min_lists.append(min(dice[1], dice[4]))
+    min_lists.append(min(dice[2], dice[3]))
+    min_lists.sort()
 
-  # 1, 2, 3 면의 주사위 최소값
-  dice_min = [-1,-1,-1]
-  dice_min[0] = min_lists[0]
-  dice_min[1] = min_lists[0] + min_lists[1]
-  dice_min[2] = sum(min_lists)
-  
-  n1 = ((n-2)*(n-2)*5+(n-2)*4)
-  n2 = (2*n-3)*4
-  n3 = 4
-   
-  total = 0 
-  total += n1 * dice_min[0]
-  total += n2 * dice_min[1]
-  total += n3 * dice_min[2]
-  
-  print(total)
+    # 1, 2, 3 면의 주사위 최소값
+    dice_min = [-1, -1, -1]
+    dice_min[0] = min_lists[0]
+    dice_min[1] = min_lists[0] + min_lists[1]
+    dice_min[2] = sum(min_lists)
+
+    n1 = ((n-2)*(n-2)*5+(n-2)*4)
+    n2 = (2*n-3)*4
+    n3 = 4
+
+    total = 0
+    total += n1 * dice_min[0]
+    total += n2 * dice_min[1]
+    total += n3 * dice_min[2]
+
+    print(total)

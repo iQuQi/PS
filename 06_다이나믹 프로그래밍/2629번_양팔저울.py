@@ -18,29 +18,33 @@
 '''
 
 n = int(input())
-n_weight = list(map(int,input().split()))
+n_weight = list(map(int, input().split()))
 
 marble = int(input())
-m_weight = list(map(int,input().split()))
+m_weight = list(map(int, input().split()))
 
 dp = [False] * 40001
 possible = []
 
 for w in n_weight:
 
-  # copy 안해주면 안에서 append 한게 바로 반영되서 무한루프
-  for p in  possible.copy():
-    # 이전 추까지의 케이스에 자신의 무게를 빼고 더해주는 경우의 수 더하기
-    if p+w  not in possible: possible.append(p+w)
-    if abs(p-w) not in possible: possible.append(abs(p-w))
-  # 자기 자신의 값 추가
-  if w not in possible: possible.append(w)
+    # copy 안해주면 안에서 append 한게 바로 반영되서 무한루프
+    for p in possible.copy():
+        # 이전 추까지의 케이스에 자신의 무게를 빼고 더해주는 경우의 수 더하기
+        if p+w not in possible:
+            possible.append(p+w)
+        if abs(p-w) not in possible:
+            possible.append(abs(p-w))
+    # 자기 자신의 값 추가
+    if w not in possible:
+        possible.append(w)
 
-for p in possible: dp[p] = True
+for p in possible:
+    dp[p] = True
 
 for w in m_weight:
-  if dp[w]:
-    print('Y ', end='')
-  else:
-    print('N ', end='')
+    if dp[w]:
+        print('Y ', end='')
+    else:
+        print('N ', end='')
 print()

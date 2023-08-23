@@ -18,6 +18,8 @@ min_value = 1e9
 max_value = -1e9
 
 # 깊이 우선 탐색 (DFS) 메서드
+
+
 def dfs(i, now):
     global min_value, max_value, add, sub, mul, div
     # 모든 연산자를 다 사용한 경우, 최솟값과 최댓값 업데이트
@@ -40,8 +42,9 @@ def dfs(i, now):
             mul += 1
         if div > 0:
             div -= 1
-            dfs(i + 1, int(now / data[i])) # 나눌 때는 나머지를 제거
+            dfs(i + 1, int(now / data[i]))  # 나눌 때는 나머지를 제거
             div += 1
+
 
 # DFS 메서드 호출
 dfs(1, data[0])
@@ -114,4 +117,3 @@ print(max_)
 print(min_)
 
 '''
-

@@ -6,7 +6,7 @@
 
 # 접근 방식: '최소한'의 움직임 = 가장 가까운 = BFS !
 
-#==============================
+# ==============================
 from collections import deque
 
 # N, M을 공백을 기준으로 구분하여 입력 받기
@@ -21,6 +21,8 @@ dx = [-1, 1, 0, 0]
 dy = [0, 0, -1, 1]
 
 # BFS 소스코드 구현
+
+
 def bfs(x, y):
     # 큐(Queue) 구현을 위해 deque 라이브러리 사용
     queue = deque()
@@ -44,6 +46,7 @@ def bfs(x, y):
                 queue.append((nx, ny))
     # 가장 오른쪽 아래까지의 최단 거리 반환
     return graph[n - 1][m - 1]
+
 
 # BFS를 수행한 결과 출력
 print(bfs(0, 0))

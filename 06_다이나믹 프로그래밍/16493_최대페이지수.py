@@ -15,26 +15,26 @@ import sys
 input = sys.stdin.readline
 
 
-n,m= map(int,input().split()) # 1 ~ 200, 1~20
-info = [(-1,-1)]
-dp = [[0]* (n+1) for _ in range(m+1)]
+n, m = map(int, input().split())  # 1 ~ 200, 1~20
+info = [(-1, -1)]
+dp = [[0] * (n+1) for _ in range(m+1)]
 
 for i in range(m):
-  day, page = map(int,input().split()) # 1 ~ 20, 1~300
-  info.append((day,page))
+    day, page = map(int, input().split())  # 1 ~ 20, 1~300
+    info.append((day, page))
 
 
 # N일간 읽을 수 있는 최대 페이지 출력
-#B[k][W] = B[k-1][W] (if wk > W)
+# B[k][W] = B[k-1][W] (if wk > W)
 #        = max(B[k-1][W], B[k][W-wk] + wk) (else)
-                  
-for c in range(1, m+1): # 1~c까지의 챕터만 고려
-  for d in range(1,n+1): # 남은 일수 d
-      nd, np = info[c]
-      if nd > d:
-        dp[c][d] = dp[c-1][d]
-      else:
-        dp[c][d] = max(dp[c-1][d],dp[c-1][d-nd]+np)
+
+for c in range(1, m+1):  # 1~c까지의 챕터만 고려
+    for d in range(1, n+1):  # 남은 일수 d
+        nd, np = info[c]
+        if nd > d:
+            dp[c][d] = dp[c-1][d]
+        else:
+            dp[c][d] = max(dp[c-1][d], dp[c-1][d-nd]+np)
 
 
 print(dp[m][n])

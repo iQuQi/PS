@@ -46,7 +46,7 @@ last_idx = len(LIS) - 1
 res = []
 for i in range(len(dp)-1, -1, -1):
     # i번째 값의 index와 마지막 인덱스값과 같다면
-    if dp[i][0] == last_idx:
+    if dp[i][0] == last_idx:  # 암기..하자
         res.append(dp[i][1])
         last_idx -= 1
 

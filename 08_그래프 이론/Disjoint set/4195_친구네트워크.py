@@ -10,50 +10,46 @@
 import sys
 input = sys.stdin.readline
 
+
 def find_parent(friend, x):
-  px = friend[x]['parent']
-  
-  if px != x: # 루트 노드가 아닐경우 
-    friend[x]['parent'] = find_parent(friend,px)
-    
-  return friend[x]['parent']
+    px = friend[x]['parent']
+
+    if px != x:  # 루트 노드가 아닐경우
+        friend[x]['parent'] = find_parent(friend, px)
+
+    return friend[x]['parent']
 
 
+def union_parent(friend, a, b):
+    pa = find_parent(friend, a)
+    pb = find_parent(friend, b)
 
-def union_parent(friend,a,b):
-  pa = find_parent(friend,a)
-  pb = find_parent(friend,b)
-  
-  if pa > pb: 
-    friend[pb]['parent'] = pa
-    friend[pa]['count'] += friend[pb]['count']
-    return friend[pa]['count']
-    
-  elif pb > pa: 
-    friend[pa]['parent'] = pb
-    friend[pb]['count'] += friend[pa]['count']
-    return friend[pb]['count']
+    if pa > pb:
+        friend[pb]['parent'] = pa
+        friend[pa]['count'] += friend[pb]['count']
+        return friend[pa]['count']
 
+    elif pb > pa:
+        friend[pa]['parent'] = pb
+        friend[pb]['count'] += friend[pa]['count']
+        return friend[pb]['count']
 
 
 T = int(input())
 for t in range(T):
-  F = int(input())
-  friend = {}
+    F = int(input())
+    friend = {}
 
-  for f in range(F):
-    a,b = input().rstrip().split()
-    
-    if a not in friend.keys(): 
-      friend[a] = {'parent':a,'count':1}
-    if b not in friend.keys(): 
-      friend[b] = {'parent':b,'count':1}
+    for f in range(F):
+        a, b = input().rstrip().split()
 
-    if find_parent(friend,a) != find_parent(friend,b):
-      print(union_parent(friend,a,b))
-    else:
-      pa = find_parent(friend,a)
-      print(friend[pa]['count'])    
+        if a not in friend.keys():
+            friend[a] = {'parent': a, 'count': 1}
+        if b not in friend.keys():
+            friend[b] = {'parent': b, 'count': 1}
 
-    
-    
+        if find_parent(friend, a) != find_parent(friend, b):
+            print(union_parent(friend, a, b))
+        else:
+            pa = find_parent(friend, a)
+            print(friend[pa]['count'])

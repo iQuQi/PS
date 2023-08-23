@@ -22,6 +22,8 @@ dx = [-1, 0, 1, 0]
 dy = [0, -1, 0, 1]
 
 # 특정 위치에서 출발하여 모든 연합을 체크한 뒤에 데이터 갱신
+
+
 def process(x, y, index):
     # (x, y)의 위치와 연결된 나라(연합) 정보를 담는 리스트
     united = []
@@ -29,9 +31,9 @@ def process(x, y, index):
     # 너비 우선 탐색 (BFS)을 위한 큐 라이브러리 사용
     q = deque()
     q.append((x, y))
-    union[x][y] = index # 현재 연합의 번호 할당
-    summary = graph[x][y] # 현재 연합의 전체 인구 수
-    count = 1 # 현재 연합의 국가 수
+    union[x][y] = index  # 현재 연합의 번호 할당
+    summary = graph[x][y]  # 현재 연합의 전체 인구 수
+    count = 1  # 현재 연합의 국가 수
     # 큐가 빌 때까지 반복(BFS)
     while q:
         x, y = q.popleft()
@@ -53,6 +55,7 @@ def process(x, y, index):
     for i, j in united:
         graph[i][j] = summary // count
 
+
 total_count = 0
 
 # 더 이상 인구 이동을 할 수 없을 때까지 반복
@@ -61,7 +64,7 @@ while True:
     index = 0
     for i in range(n):
         for j in range(n):
-            if union[i][j] == -1: # 해당 나라가 아직 처리되지 않았다면
+            if union[i][j] == -1:  # 해당 나라가 아직 처리되지 않았다면
                 process(i, j, index)
                 index += 1
     # 모든 인구 이동이 끝난 경우
@@ -71,8 +74,6 @@ while True:
 
 # 인구 이동 횟수 출력
 print(total_count)
-
-
 
 
 '''내코드

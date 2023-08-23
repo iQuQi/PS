@@ -3,7 +3,7 @@
 # 경로에 있는 각 칸의 수의 합계가 최대가 되도록 하는 경로를 구하자
 
 n = int(input())
-dp = [] # 다이나믹 프로그래밍을 위한 DP 테이블 초기화
+dp = []  # 다이나믹 프로그래밍을 위한 DP 테이블 초기화
 
 for _ in range(n):
     dp.append(list(map(int, input().split())))

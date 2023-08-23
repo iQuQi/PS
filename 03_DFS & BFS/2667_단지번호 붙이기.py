@@ -12,47 +12,50 @@
 '''
 
 from collections import deque
-dx = [1,0,-1,0]
-dy = [0,1,0,-1]
+dx = [1, 0, -1, 0]
+dy = [0, 1, 0, -1]
 
 n = int(input())
 graph = []
 visited = [[False] * n for _ in range(n)]
 areas = []
 
+
 def bfs(graph, start, visited):
-  global area
-  queue = deque([start])
-  i,j = start
-  visited[i][j] = True
+    global area
+    queue = deque([start])
+    i, j = start
+    visited[i][j] = True
 
-  while queue:
-    i,j = queue.popleft()
-    
-    for t in range(4):
-      ni,nj = (i + dy[t], j+dx[t])
-      if ni <0 or ni >=n or nj<0 or nj >=n: continue
-      if graph[ni][nj] == '0': continue
-        
-      if not visited[ni][nj]:
-          queue.append((ni,nj))
-          visited[ni][nj] = True
-          areas[-1] += 1
+    while queue:
+        i, j = queue.popleft()
 
+        for t in range(4):
+            ni, nj = (i + dy[t], j+dx[t])
+            if ni < 0 or ni >= n or nj < 0 or nj >= n:
+                continue
+            if graph[ni][nj] == '0':
+                continue
 
-for i in range(n):
-  # [오답노트]
-  # 이거 list(map(int,input().split())) 으로 하면 
-  # 0100010 이런 경우에 맨앞 0이 잘려서 들어감 
-  graph.append(list(input()))
+            if not visited[ni][nj]:
+                queue.append((ni, nj))
+                visited[ni][nj] = True
+                areas[-1] += 1
+
 
 for i in range(n):
-  for j in range(n):
-    if not visited[i][j] and graph[i][j] == '1':
-      areas.append(1)
-      bfs(graph, (i,j), visited)
+    # [오답노트]
+    # 이거 list(map(int,input().split())) 으로 하면
+    # 0100010 이런 경우에 맨앞 0이 잘려서 들어감
+    graph.append(list(input()))
+
+for i in range(n):
+    for j in range(n):
+        if not visited[i][j] and graph[i][j] == '1':
+            areas.append(1)
+            bfs(graph, (i, j), visited)
 
 areas.sort()
 print(len(areas))
 for area in areas:
-  print(area)
+    print(area)

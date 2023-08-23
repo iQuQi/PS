@@ -19,39 +19,41 @@ i와 j 사이의 모든 강의도 같은 블루레이에 녹화해야 한다.
 import sys
 input = sys.stdin.readline
 
-n,m = map(int, input().split())
-course = list(map(int,input().split()))
+n, m = map(int, input().split())
+course = list(map(int, input().split()))
 total = sum(course)
 longest = max(course)
 min_length = total
 
+
 def possible(now):
-  tmp = 0
-  count = 1
-  
-  for c in course:
-    if tmp + c <= now:
-      tmp += c
-    else:
-      tmp = c
-      count += 1
-  return count <= m
+    tmp = 0
+    count = 1
 
-def solution(left,right):
-  global min_length
-  
-  while left <= right:
-    now = (left+right) // 2
-    if possible(now):
-      min_length = min(min_length, now)
-      right = now - 1
-    else:
-      left = now + 1
-
-  return
+    for c in course:
+        if tmp + c <= now:
+            tmp += c
+        else:
+            tmp = c
+            count += 1
+    return count <= m
 
 
-# 오답이유 solution(1,total)로 함. 
+def solution(left, right):
+    global min_length
+
+    while left <= right:
+        now = (left+right) // 2
+        if possible(now):
+            min_length = min(min_length, now)
+            right = now - 1
+        else:
+            left = now + 1
+
+    return
+
+
+# 오답이유 solution(1,total)로 함.
 # 최소값은 모든 강의를 모두 다른 블루레이에 하나씩 넣는 것 -> 가장 긴 강의의 길이!
-solution(longest,total)
+solution(longest, total)
 print(min_length)

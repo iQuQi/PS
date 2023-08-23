@@ -16,6 +16,7 @@ def binary_search(array, start, end):
     else:
         return binary_search(array, mid + 1, end)
 
+
 n = int(input())
 array = list(map(int, input().split()))
 

@@ -19,35 +19,36 @@
 플러그는 한 번만 빼면 된다.
 '''
 
-n,k = map(int, input().split())
-use = list(map(int,input().split()))
+n, k = map(int, input().split())
+use = list(map(int, input().split()))
 result = 0
 multitab = [0] * n
 
 for index, i in enumerate(use):
-  # 이미 사용중인 경우
-  if i in multitab: pass
-  # 멀티탭에 자리가 있는 경우
-  elif 0 in multitab:
-    multitab[multitab.index(0)] = i
-  # 자리가 없는 경우
-  else:
-    change_index = -1
-    
-    # 더이상 사용하지 않는 기기인 경우 이걸 뽑음
-    for m_idx, m in enumerate(multitab):
-      if m not in use[index:]:
-        change_index = m_idx
-        break
+    # 이미 사용중인 경우
+    if i in multitab:
+        pass
+    # 멀티탭에 자리가 있는 경우
+    elif 0 in multitab:
+        multitab[multitab.index(0)] = i
+    # 자리가 없는 경우
+    else:
+        change_index = -1
 
-    # 이후에도 사용되는 기기인 경우 가장 나중에 사용되는 걸 뽑음
-    if change_index == -1:
-      next = []
-      for j in range(n):
-        next.append(use[index:].index(multitab[j]))
-      change_index = next.index(max(next))
-        
-    multitab[change_index] = i  
-    result += 1
+        # 더이상 사용하지 않는 기기인 경우 이걸 뽑음
+        for m_idx, m in enumerate(multitab):
+            if m not in use[index:]:
+                change_index = m_idx
+                break
+
+        # 이후에도 사용되는 기기인 경우 가장 나중에 사용되는 걸 뽑음
+        if change_index == -1:
+            next = []
+            for j in range(n):
+                next.append(use[index:].index(multitab[j]))
+            change_index = next.index(max(next))
+
+        multitab[change_index] = i
+        result += 1
 
 print(result)

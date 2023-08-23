@@ -12,20 +12,21 @@ import math
 input = sys.stdin.readline
 INF = int(1e9)
 
+
 def find_parent(parent, x):
-  if parent[x] != x:  # 루트 노드가 아닐경우
-    parent[x]= find_parent(parent, parent[x])
-  return parent[x]
+    if parent[x] != x:  # 루트 노드가 아닐경우
+        parent[x] = find_parent(parent, parent[x])
+    return parent[x]
 
 
 def union_parent(parent, a, b):
-  pa = find_parent(parent, a)
-  pb = find_parent(parent, b)
+    pa = find_parent(parent, a)
+    pb = find_parent(parent, b)
 
-  if pa > pb:
-    parent[pb] = pa
-  elif pb > pa:
-    parent[pa]= pb
+    if pa > pb:
+        parent[pb] = pa
+    elif pb > pa:
+        parent[pa] = pb
 
 
 n = int(input())
@@ -35,35 +36,37 @@ cost = [[INF]*n for _ in range(n)]
 edges = []
 
 for i in range(n):
-  x,y = map(float, input().split())
-  star.append((x,y))
+    x, y = map(float, input().split())
+    star.append((x, y))
 
 
 # n개의 별 -> n개의 별로 가는 모든 edges에 대한 계산해주기
 for i in range(n):
-  for j in range(n):
-    if i == j: continue
-      
-    if cost[j][i] != INF: 
-      cost[i][j] = cost[j][i]
-      
-    else: 
-      x1,y1 = star[i]
-      x2,y2 = star[j]
-      cost[i][j] = math.sqrt(abs(x1-x2)**2 + abs(y1-y2)**2)
+    for j in range(n):
+        if i == j:
+            continue
+
+        if cost[j][i] != INF:
+            cost[i][j] = cost[j][i]
+
+        else:
+            x1, y1 = star[i]
+            x2, y2 = star[j]
+            cost[i][j] = math.sqrt(abs(x1-x2)**2 + abs(y1-y2)**2)
 
 for i in range(n):
-  for j in range(n):
-    if i == j: continue
-    if (cost[j][i],j,i) not in edges:
-      edges.append((cost[i][j],i,j))
+    for j in range(n):
+        if i == j:
+            continue
+        if (cost[j][i], j, i) not in edges:
+            edges.append((cost[i][j], i, j))
 
 edges.sort()
 total = 0
 
-for c,s1,s2 in edges:
-  if find_parent(parent,s1) != find_parent(parent,s2):
-    union_parent(parent,s1,s2)
-    total += c
+for c, s1, s2 in edges:
+    if find_parent(parent, s1) != find_parent(parent, s2):
+        union_parent(parent, s1, s2)
+        total += c
 
-print(round(total,2))
+print(round(total, 2))

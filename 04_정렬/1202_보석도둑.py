@@ -19,36 +19,36 @@ jewels = []
 bags = []
 
 # 보석 정보 입력 받기
-for i in range(N): # 30만번
-  m, v = map(int,input().split())
-  jewels.append((m,v)) 
-  # 오답이유1: 가치순이 아닌 무게순으로 정렬해야함!
-  # 무게 오름차순, 무게 같으면 가격 오름차순
+for i in range(N):  # 30만번
+    m, v = map(int, input().split())
+    jewels.append((m, v))
+    # 오답이유1: 가치순이 아닌 무게순으로 정렬해야함!
+    # 무게 오름차순, 무게 같으면 가격 오름차순
 
 # 가방 정보 입력받기
-for i in range(K): # 30만번
-  bags.append(int(input()))
+for i in range(K):  # 30만번
+    bags.append(int(input()))
 
-bags.sort() # 180만번
-jewels.sort() # 180만번
+bags.sort()  # 180만번
+jewels.sort()  # 180만번
 
 total = 0
 possible = []
 
 # 무게가 적은 가방부터 검사
 # 오답이유2: 가방 순으로 체크 해야함. 나는 보석을 기준으로 검사했음
-for bag in bags: # 30만번
-  # 제일 가벼운 보석이 들어갈 수 있는 한...
-  while jewels and jewels[0][0] <= bag: 
-    # 오답이유3: logN에서 밑은 10이 아니라 2임 바보!
-    heappush(possible, -jewels[0][1]) # logN 
-    heappop(jewels) # logN
-    
-  # 그 중에서 가치가 가장 높은 보석을 실제로 넣는다
-  # [주의] possible은 유지됨
-  if possible:
-    total -= heappop(possible) # logN
-      
+for bag in bags:  # 30만번
+    # 제일 가벼운 보석이 들어갈 수 있는 한...
+    while jewels and jewels[0][0] <= bag:
+        # 오답이유3: logN에서 밑은 10이 아니라 2임 바보!
+        heappush(possible, -jewels[0][1])  # logN
+        heappop(jewels)  # logN
+
+    # 그 중에서 가치가 가장 높은 보석을 실제로 넣는다
+    # [주의] possible은 유지됨
+    if possible:
+        total -= heappop(possible)  # logN
+
 print(total)
 # 오답이유4: count를 따로세면 count 0이 되어도 bisect 검색에 걸리기 때문에 제대로 연산이 안됨
 

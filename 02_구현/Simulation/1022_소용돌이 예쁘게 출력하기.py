@@ -30,43 +30,46 @@
 r1, c1, r2, c2 = map(int, input().split())
 
 print_arr = [[0] * (c2-c1 + 1) for _ in range(r2-r1 + 1)]
-count,step, max_length = 0,1,1
+count, step, max_length = 0, 1, 1
 now_i, now_j, now_val = 0, 0, 1
 
 if c1 <= now_j <= c2 and r1 <= now_i <= r2:
-  print_arr[now_i-r1][now_j-c1] = now_val
-  count += 1
-
+    print_arr[now_i-r1][now_j-c1] = now_val
+    count += 1
 
 
 while True:
-  # 늘어나는 칸수가 짝수개인경우 그만큼 왼쪽 이동 후 아래쪽 이동
-  # 홀수개가 늘어가느 경우 오른쪽이동후 위쪽 이동
-  
-  for _ in range(step):
-    if step % 2 != 0: now_j += 1
-    else: now_j -= 1
-    now_val += 1
-    if c1 <= now_j <= c2 and r1 <= now_i <= r2:
-      print_arr[now_i-r1][now_j-c1] = now_val
-      count += 1
-      max_length = max(max_length, len(str(now_val)))
-      
-  for _ in range(step): 
-    if step % 2 != 0:now_i -= 1
-    else: now_i += 1
-    now_val += 1
-    if c1 <= now_j <= c2 and r1 <= now_i <= r2:
-      print_arr[now_i-r1][now_j-c1] = now_val
-      count += 1
-      max_length = max(max_length, len(str(now_val)))
+    # 늘어나는 칸수가 짝수개인경우 그만큼 왼쪽 이동 후 아래쪽 이동
+    # 홀수개가 늘어가느 경우 오른쪽이동후 위쪽 이동
 
-  if count >= (c2-c1+1)*(r2-r1+1): break
+    for _ in range(step):
+        if step % 2 != 0:
+            now_j += 1
+        else:
+            now_j -= 1
+        now_val += 1
+        if c1 <= now_j <= c2 and r1 <= now_i <= r2:
+            print_arr[now_i-r1][now_j-c1] = now_val
+            count += 1
+            max_length = max(max_length, len(str(now_val)))
 
-  step += 1
+    for _ in range(step):
+        if step % 2 != 0:
+            now_i -= 1
+        else:
+            now_i += 1
+        now_val += 1
+        if c1 <= now_j <= c2 and r1 <= now_i <= r2:
+            print_arr[now_i-r1][now_j-c1] = now_val
+            count += 1
+            max_length = max(max_length, len(str(now_val)))
+
+    if count >= (c2-c1+1)*(r2-r1+1):
+        break
+
+    step += 1
 
 for arr in print_arr:
-  for item in arr:
-    print(str(item).rjust(max_length, ' ') + ' ', end='')
-  print()
-    
+    for item in arr:
+        print(str(item).rjust(max_length, ' ') + ' ', end='')
+    print()

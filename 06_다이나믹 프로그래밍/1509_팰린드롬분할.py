@@ -44,8 +44,9 @@ for l in range(3, L + 1):  # 길이 3 ~ L 짜리 팰린드롬
             # 처음과 끝이 같고, 그 사이가 팰린드롬이면
             is_p[start][end] = 1  # start~end 도 팰린드롬
 
-for end in range(L):
+for end in range(L):  # 한글자씩 추가
     for start in range(end + 1):
+        # dp[i]: i 번째까지의 최소 팰린드롬 분할 개수
         if is_p[start][end]:
             dp[end] = min(dp[end], dp[start - 1] + 1)
         else:

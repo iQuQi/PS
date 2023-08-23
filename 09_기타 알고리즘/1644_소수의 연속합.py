@@ -17,34 +17,36 @@
 # 수학 - 소수 & 투 포인터
 import math
 
-n = int(input()) 
-array = [True for i in range(n + 1)] # 처음엔 모든 수가 소수(True)인 것으로 초기화
+n = int(input())
+array = [True for i in range(n + 1)]  # 처음엔 모든 수가 소수(True)인 것으로 초기화
 
-# 에라토스테네스의 체 알고리즘 
-for i in range(2, int(math.sqrt(n)) + 1): # 2부터 n의 제곱근까지의 모든 수를 확인하며
-    if array[i] == True: # i가 소수인 경우 (남은 수인 경우)
+# 에라토스테네스의 체 알고리즘
+for i in range(2, int(math.sqrt(n)) + 1):  # 2부터 n의 제곱근까지의 모든 수를 확인하며
+    if array[i] == True:  # i가 소수인 경우 (남은 수인 경우)
         # i를 제외한 i의 모든 배수를 지우기
-        j = 2 
+        j = 2
         while i * j <= n:
             array[i * j] = False
             j += 1
 
 # 0,1 은 소수 아님
-sosu = [idx+2 for idx,i in enumerate(array[2:]) if i == True]
+sosu = [idx+2 for idx, i in enumerate(array[2:]) if i == True]
 
 total = 0
 count = 0
-start, end = 0,0
+start, end = 0, 0
 
 while start < len(sosu) and end < len(sosu):
-  if total + sosu[end] >= n:
-    if total + sosu[end] == n: count += 1
-    total -= sosu[start]
-    if start == end: end += 1
-    start += 1
-    
-  else: 
-    total += sosu[end]
-    end += 1
-    
+    if total + sosu[end] >= n:
+        if total + sosu[end] == n:
+            count += 1
+        total -= sosu[start]
+        if start == end:
+            end += 1
+        start += 1
+
+    else:
+        total += sosu[end]
+        end += 1
+
 print(count)

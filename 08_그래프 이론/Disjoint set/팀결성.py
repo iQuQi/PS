@@ -8,6 +8,8 @@ def find_parent(parent, x):
     return parent[x]
 
 # 두 원소가 속한 집합을 합치기
+
+
 def union_parent(parent, a, b):
     a = find_parent(parent, a)
     b = find_parent(parent, b)
@@ -16,8 +18,9 @@ def union_parent(parent, a, b):
     else:
         parent[a] = b
 
+
 n, m = map(int, input().split())
-parent = [0] * (n + 1) # 부모 테이블 초기화
+parent = [0] * (n + 1)  # 부모 테이블 초기화
 
 # 부모 테이블상에서, 부모를 자기 자신으로 초기화
 for i in range(0, n + 1):

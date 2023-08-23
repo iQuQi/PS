@@ -9,8 +9,8 @@ from collections import deque
 
 n, k = map(int, input().split())
 
-graph = [] # 전체 보드 정보를 담는 리스트
-data = [] # 바이러스에 대한 정보를 담는 리스트
+graph = []  # 전체 보드 정보를 담는 리스트
+data = []  # 바이러스에 대한 정보를 담는 리스트
 
 for i in range(n):
     # 보드 정보를 한 줄 단위로 입력
@@ -24,9 +24,9 @@ for i in range(n):
 # 정렬 이후에 큐로 옮기기 (낮은 번호의 바이러스가 먼저 증식하므로)
 data.sort()
 q = deque(data)
- 
+
 target_s, target_x, target_y = map(int, input().split())
- 
+
 # 바이러스가 퍼져나갈 수 있는 4가지의 위치
 dx = [-1, 0, 1, 0]
 dy = [0, 1, 0, -1]
@@ -49,7 +49,6 @@ while q:
                 q.append((virus, s + 1, nx, ny))
 
 print(graph[target_x - 1][target_y - 1])
-
 
 
 '''내코드

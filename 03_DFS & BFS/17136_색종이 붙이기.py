@@ -22,57 +22,73 @@ remain = [5] * 6
 
 # 입력 받기 & 색종이가 올라갈 칸수 세기
 for i in range(10):
-  paper[i] = list(map(int,input().split()))
-  for p in paper[i]:
-    if p==1:total_color += 1
+    paper[i] = list(map(int, input().split()))
+    for p in paper[i]:
+        if p == 1:
+            total_color += 1
 
 # 백트래킹 체크 함수
-def possible(t,graph,y,x):
-  for i in range(t):
-    for j in range(t):
-      if y+i >= 10 or x+j >= 10: return False
-      if graph[y+i][x+j] == 0: return False
-  return True
 
-def endCheck(color_count,color_1):
-  global min_color
-  if total_color == color_1:
-    min_color = min(min_color, color_count)
-  
+
+def possible(t, graph, y, x):
+    for i in range(t):
+        for j in range(t):
+            if y+i >= 10 or x+j >= 10:
+                return False
+            if graph[y+i][x+j] == 0:
+                return False
+    return True
+
+
+def endCheck(color_count, color_1):
+    global min_color
+    if total_color == color_1:
+        min_color = min(min_color, color_count)
+
 # DFS
-def dfs(graph,start,color_count, color_1):
-  y,x = start
-  endCheck(color_count, color_1)
-
-  if graph[y][x] == 0 :
-    if x+1 < 10: dfs(graph,(y,x+1),color_count,color_1)
-    elif y+1 < 10: dfs(graph,(y+1,0),color_count,color_1)
-    else: endCheck(color_count, color_1)
-      
-  elif graph[y][x] == 1:
-    for t in range(5,0,-1):
-      if remain[t] == 0: continue
-      if not possible(t,graph,y,x): continue
-      remain[t] -= 1
-      # 색종이를 붙이기
-      for i in range(t):
-        for j in range(t):
-          graph[y+i][x+j] = 0
-    
-      # 다음칸으로 이동
-      if x+1 < 10: dfs(graph,(y,x+1),color_count +1,color_1 + t*t)
-      elif y+1 < 10: dfs(graph,(y+1,0),color_count +1,color_1 + t*t)
-      else: endCheck(color_count+1, color_1+t*t)
-    
-      remain[t] += 1
-      # 색종이 다시 떼기
-      for i in range(t):
-        for j in range(t):
-          graph[y+i][x+j] = 1
 
 
+def dfs(graph, start, color_count, color_1):
+    y, x = start
+    endCheck(color_count, color_1)
+
+    if graph[y][x] == 0:
+        if x+1 < 10:
+            dfs(graph, (y, x+1), color_count, color_1)
+        elif y+1 < 10:
+            dfs(graph, (y+1, 0), color_count, color_1)
+        else:
+            endCheck(color_count, color_1)
+
+    elif graph[y][x] == 1:
+        for t in range(5, 0, -1):
+            if remain[t] == 0:
+                continue
+            if not possible(t, graph, y, x):
+                continue
+            remain[t] -= 1
+            # 색종이를 붙이기
+            for i in range(t):
+                for j in range(t):
+                    graph[y+i][x+j] = 0
+
+            # 다음칸으로 이동
+            if x+1 < 10:
+                dfs(graph, (y, x+1), color_count + 1, color_1 + t*t)
+            elif y+1 < 10:
+                dfs(graph, (y+1, 0), color_count + 1, color_1 + t*t)
+            else:
+                endCheck(color_count+1, color_1+t*t)
+
+            remain[t] += 1
+            # 색종이 다시 떼기
+            for i in range(t):
+                for j in range(t):
+                    graph[y+i][x+j] = 1
 
 
-dfs(paper, (0,0), 0, 0)
-if min_color == INF: print(-1)
-else: print(min_color)
+dfs(paper, (0, 0), 0, 0)
+if min_color == INF:
+    print(-1)
+else:
+    print(min_color)

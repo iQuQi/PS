@@ -22,5 +22,7 @@ k = int(input())
 sensor = sorted(list(map(int, input().split())))
 gap = sorted([sensor[i+1] - sensor[i] for i in range(n-1)])
 
-if k >= n: print(0) # 오... 생각도 못함
-else: print(sum(gap[:n-k])) # [:-(k-1)]로 해서 틀림 - k가1일때는 오답이므로
+if k >= n:
+    print(0)  # 오... 생각도 못함
+else:
+    print(sum(gap[:n-k]))  # [:-(k-1)]로 해서 틀림 - k가1일때는 오답이므로

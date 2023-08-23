@@ -19,4 +19,3 @@ for i in range(1, n):
 
 # 열외해야 하는 병사의 최소 수를 출력
 print(n - max(dp))
-

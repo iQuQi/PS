@@ -45,65 +45,62 @@
 '''
 
 
-
-import sys 
+import sys
 import copy
 from collections import deque
 input = sys.stdin.readline
 
-dx = [1,0,-1,0]
-dy = [0,1,0,-1]
+dx = [1, 0, -1, 0]
+dy = [0, 1, 0, -1]
 
-n,m = map(int,input().rstrip().split())
+n, m = map(int, input().rstrip().split())
 board = [[0]*m for _ in range(n)]
 for i in range(n):
-  for j,h in enumerate(list(input().rstrip().split(' '))):
-    board[i][j] =  int(h)  
+    for j, h in enumerate(list(input().rstrip().split(' '))):
+        board[i][j] = int(h)
 
 
 def bfs(graph, next_year, visited, start):
-  y,x = start
-  q = deque([(y,x)])
-  visited[y][x] = True
+    y, x = start
+    q = deque([(y, x)])
+    visited[y][x] = True
 
-  while q:
-    y,x = q.popleft()
-      
-    for t in range(4):
-      ny,nx = y+dy[t], x+dx[t]
-      if ny < 0 or ny >= n or nx < 0 or nx >= m:
-        continue
-        
-      nh = graph[ny][nx]
-      if nh > 0 and not visited[ny][nx]: 
-        visited[ny][nx] = True
-        q.append((ny,nx))
-      elif nh == 0 and next_year[y][x]>0:
-        next_year[y][x] -= 1
+    while q:
+        y, x = q.popleft()
 
-  
+        for t in range(4):
+            ny, nx = y+dy[t], x+dx[t]
+            if ny < 0 or ny >= n or nx < 0 or nx >= m:
+                continue
+
+            nh = graph[ny][nx]
+            if nh > 0 and not visited[ny][nx]:
+                visited[ny][nx] = True
+                q.append((ny, nx))
+            elif nh == 0 and next_year[y][x] > 0:
+                next_year[y][x] -= 1
+
+
 year = 0
-while True: 
-  count = 0
-  visited = [[False]*m for _ in range(n)]
-  next_year = copy.deepcopy(board) # 이렇게 안하면 옆에서 녹아버려서 생긴 바다로 인해서 다음칸이 더 녹아버리는 현상 발생 -> 한해가 가면 그 전 해의 상태를 기준으로 녹아야함
-  
-  for i in range(n):
-    for j in range(m):
-      if not visited[i][j] and board[i][j] != 0:
-        bfs(board, next_year,visited, (i,j))
-        count += 1
+while True:
+    count = 0
+    visited = [[False]*m for _ in range(n)]
+    # 이렇게 안하면 옆에서 녹아버려서 생긴 바다로 인해서 다음칸이 더 녹아버리는 현상 발생 -> 한해가 가면 그 전 해의 상태를 기준으로 녹아야함
+    next_year = copy.deepcopy(board)
 
-  board = next_year
+    for i in range(n):
+        for j in range(m):
+            if not visited[i][j] and board[i][j] != 0:
+                bfs(board, next_year, visited, (i, j))
+                count += 1
 
-  if count >= 2: 
-    print(year)
-    break
-  if count == 0:
-    print(0)
-    break
+    board = next_year
 
-  year += 1
+    if count >= 2:
+        print(year)
+        break
+    if count == 0:
+        print(0)
+        break
 
-    
-    
+    year += 1

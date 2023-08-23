@@ -14,44 +14,46 @@
 제일 오른쪽 아래 지점까지 항상 내리막길로만 이동하는 경로의 개수를 구하는 프로그램을 작성하시오.
 '''
 
-import sys 
+import sys
 sys.setrecursionlimit(30000)
 input = sys.stdin.readline
 
-dx = [1,0,-1,0]
-dy = [0,1,0,-1]
+dx = [1, 0, -1, 0]
+dy = [0, 1, 0, -1]
 
-m,n = map(int,input().rstrip().split())
+m, n = map(int, input().rstrip().split())
 board = [[0]*n for _ in range(m)]
 # 오답이유1: path를 0으로 다 초기화 함으로써 dp 계산이 된 건지 구분이 안됐음
 path = [[-1]*n for _ in range(m)]
 path[m-1][n-1] = 1
 
 for i in range(m):
-  for j,h in enumerate(list(input().rstrip().split(' '))):
-    board[i][j] =  int(h)  
+    for j, h in enumerate(list(input().rstrip().split(' '))):
+        board[i][j] = int(h)
+
 
 def dfs(graph, path, now):
-  y,x = now
-  h = board[y][x]
-  temp_path = 0
+    y, x = now
+    h = board[y][x]
+    temp_path = 0
 
-  for t in range(4):
-    ny,nx = y+dy[t], x+dx[t]
-    if ny < 0 or ny >= m or nx < 0 or nx >= n:
-      continue
+    for t in range(4):
+        ny, nx = y+dy[t], x+dx[t]
+        if ny < 0 or ny >= m or nx < 0 or nx >= n:
+            continue
 
-    nh = board[ny][nx]
-    if not nh < h: continue 
-    # 오답이유2: path[ny][nx] != 0로 함 -> 0도 이미 계산된 칸이므로 dp 값을 써야 함
-    elif path[ny][nx] >= 0: 
-      temp_path += path[ny][nx]
-    else: 
-      temp_path += dfs(graph,path, (ny,nx))
+        nh = board[ny][nx]
+        if not nh < h:
+            continue
+        # 오답이유2: path[ny][nx] != 0로 함 -> 0도 이미 계산된 칸이므로 dp 값을 써야 함
+        elif path[ny][nx] >= 0:
+            temp_path += path[ny][nx]
+        else:
+            temp_path += dfs(graph, path, (ny, nx))
 
-  path[y][x] = temp_path
-  return path[y][x]
+    path[y][x] = temp_path
+    return path[y][x]
 
-      
-dfs(board, path, (0,0))
+
+dfs(board, path, (0, 0))
 print(path[0][0])

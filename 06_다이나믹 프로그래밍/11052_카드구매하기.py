@@ -43,15 +43,15 @@ N개보다 많은 개수의 카드를 산 다음, 나머지 카드를 버려서 
 import sys
 input = sys.stdin.readline
 
-n= int(input()) # 1 ~ 1000
+n = int(input())  # 1 ~ 1000
 P = [0]
 P += list(map(int, input().split()))
-  # 1 <= Pi <= 10000
+# 1 <= Pi <= 10000
 
 dp = [p for p in P]
 
-for t in range(2,n+1):
-  for k in range(1,t):
-    dp[t] = max(dp[t-k]+dp[k], dp[t])
+for t in range(2, n+1):  # t개의 카드를 구매할 때 최대 금액
+    for k in range(1, t):  # k개의 카드팩을 구매 & t-k개의 카드를 구매할 때 최대 금액
+        dp[t] = max(dp[t-k]+dp[k], dp[t])
 
 print(dp[n])

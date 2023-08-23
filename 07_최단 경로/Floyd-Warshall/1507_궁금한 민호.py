@@ -23,8 +23,8 @@ i -> j로 가는 최단경로와 i -> k, k -> j 로 가는 최단경로의 합�
 i -> j의 최단경로가 더 크다면 입력이 잘못된 것이므로 result를 -1로 저장해준다.
 없애준 경로를 제외하고 값을 더해준 다음 출력해준다.
 '''
-import sys
 
+import sys
 input = sys.stdin.readline
 n = int(input())
 s = []
@@ -32,20 +32,24 @@ s_ = [[True] * n for i in range(n)]
 result = 0
 
 for i in range(n):
-  s.append(list(map(int, input().split())))
+    s.append(list(map(int, input().split())))
 
 for k in range(n):
-  for i in range(n):
-    for j in range(n):
-      # i == j 는 필수는 아님. 나머지 두 조건은 필수
-      if i == j or j == k or i == k: continue
-      if s[i][j] == s[i][k] + s[k][j]: s_[i][j] = False
-      elif s[i][j] > s[i][k] + s[k][j]: result = -1
+    for i in range(n):
+        for j in range(n):
+            # i == j 는 필수는 아님. 나머지 두 조건은 필수
+            if i == j or j == k or i == k:
+                continue
+            if s[i][j] == s[i][k] + s[k][j]:
+                s_[i][j] = False
+            elif s[i][j] > s[i][k] + s[k][j]:
+                result = -1
 
 if result != -1:
-  for i in range(n):
-    for j in range(i, n):
-      # 최소개의 간선의 비용 합 구하기
-      if s_[i][j]: result += s[i][j]
+    for i in range(n):
+        for j in range(i, n):
+            # 최소개의 간선의 비용 합 구하기
+            if s_[i][j]:
+                result += s[i][j]
 
 print(result)

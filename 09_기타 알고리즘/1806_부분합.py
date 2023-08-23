@@ -17,20 +17,21 @@ min_len = n + 1
 total = 0
 
 while start < n and end < n:
-  next_len = end - start + 1
-  
-  if total + arr[end] < s and next_len < min_len:
-      total += arr[end]
-      end += 1
-      
-  else:
-    min_len = min(min_len, next_len)
-    if start == end:
-      start += 1
-      end += 1
+    next_len = end - start + 1
+
+    if total + arr[end] < s and next_len < min_len:
+        total += arr[end]
+        end += 1
+
     else:
-      total -= arr[start]
-      start += 1
-      
-if min_len == n + 1: min_len = 0
+        min_len = min(min_len, next_len)
+        if start == end:
+            start += 1
+            end += 1
+        else:
+            total -= arr[start]
+            start += 1
+
+if min_len == n + 1:
+    min_len = 0
 print(min_len)

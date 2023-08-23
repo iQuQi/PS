@@ -30,29 +30,29 @@ graph = [[] for _ in range(n + 1)]
 indegree = [0] * (n + 1)
 
 for i in range(m):
-  a, b = map(int, input().split())  # A -> B
-  graph[a].append(b)
-  indegree[b] += 1
+    a, b = map(int, input().split())  # A -> B
+    graph[a].append(b)
+    indegree[b] += 1
 
 
 def topology_sort():
-  h = []
-  answer = []
+    h = []
+    answer = []
 
-  for i in range(1, n + 1):
-    if indegree[i] == 0:
-      heappush(h, i)
+    for i in range(1, n + 1):
+        if indegree[i] == 0:
+            heappush(h, i)
 
-  while h:
-    now = heappop(h)
-    answer.append(str(now))
+    while h:
+        now = heappop(h)
+        answer.append(str(now))
 
-    for i in graph[now]:
-      indegree[i] -= 1
-      if indegree[i] == 0:
-        heappush(h, i)
+        for i in graph[now]:
+            indegree[i] -= 1
+            if indegree[i] == 0:
+                heappush(h, i)
 
-  return answer
+    return answer
 
 
 print(' '.join(topology_sort()))

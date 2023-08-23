@@ -25,8 +25,8 @@ from bisect import bisect_left
 import sys
 input = sys.stdin.readline
 
-n= int(input()) # 1 ~ 1000
-card = list(map(int, input().split())) # 각 정수는 1 ~ 100,000,000
+n = int(input())  # 1 ~ 1000
+card = list(map(int, input().split()))  # 각 정수는 1 ~ 100,000,000
 
 dp = [card[0]]
 

@@ -5,8 +5,8 @@
 # BOJ에서는 [언어]를 PyPy3로 설정하여 제출해주세요.
 
 n, m = map(int, input().split())
-data = [] # 초기 맵 리스트
-temp = [[0] * m for _ in range(n)] # 벽을 설치한 뒤의 맵 리스트
+data = []  # 초기 맵 리스트
+temp = [[0] * m for _ in range(n)]  # 벽을 설치한 뒤의 맵 리스트
 
 for _ in range(n):
     data.append(list(map(int, input().split())))
@@ -18,6 +18,8 @@ dy = [0, 1, 0, -1]
 result = 0
 
 # 깊이 우선 탐색(DFS)을 이용해 각 바이러스가 사방으로 퍼지도록 하기
+
+
 def virus(x, y):
     for i in range(4):
         nx = x + dx[i]
@@ -30,6 +32,8 @@ def virus(x, y):
                 virus(nx, ny)
 
 # 현재 맵에서 안전 영역의 크기 계산하는 메서드
+
+
 def get_score():
     score = 0
     for i in range(n):
@@ -39,6 +43,8 @@ def get_score():
     return score
 
 # 깊이 우선 탐색(DFS)을 이용해 울타리를 설치하면서, 매 번 안전 영역의 크기 계산
+
+
 def dfs(count):
     global result
     # 울타리가 3개 설치된 경우
@@ -64,10 +70,9 @@ def dfs(count):
                 data[i][j] = 0
                 count -= 1
 
+
 dfs(0)
 print(result)
-
-
 
 
 ''' 내 코드

@@ -16,42 +16,44 @@
 import sys
 input = sys.stdin.readline
 
-n,m = map(int, input().split())
+n, m = map(int, input().split())
 money = []
 for i in range(n):
-  money.append(int(input()))
+    money.append(int(input()))
 total = sum(money)
 biggest = max(money)
 min_k = total
 
+
 def possible(now):
-  have = now
-  out = 1
-  
-  for t in money:
-    if have - t < 0:
-      out += 1
-      have = now
-    have -= t
-  # 문제에서 정확히 m번 사용해야한다고 했으나
-  # 남은 돈이 넉넉함에도 다시 빼는게 가능하다고 함 
-  # 예를 들어, 5번꺼내야하는데 4번밖에 못꺼냈을 경우, 꺼낼 날 직전날에도 꺼냈다빼서 사용하게 되면 
-  # +1 가능이므로 out<=m으로 게산해도 무방
-  return out <= m
+    have = now
+    out = 1
 
-def solution(left,right):
-  global min_k
-  
-  while left <= right:
-    now = (left+right) // 2
-    if possible(now):
-      min_k = min(min_k, now)
-      right = now - 1
-    else:
-      left = now + 1
-
-  return
+    for t in money:
+        if have - t < 0:
+            out += 1
+            have = now
+        have -= t
+    # 문제에서 정확히 m번 사용해야한다고 했으나
+    # 남은 돈이 넉넉함에도 다시 빼는게 가능하다고 함
+    # 예를 들어, 5번꺼내야하는데 4번밖에 못꺼냈을 경우, 꺼낼 날 직전날에도 꺼냈다빼서 사용하게 되면
+    # +1 가능이므로 out<=m으로 게산해도 무방
+    return out <= m
 
 
-solution(biggest,total)
+def solution(left, right):
+    global min_k
+
+    while left <= right:
+        now = (left+right) // 2
+        if possible(now):
+            min_k = min(min_k, now)
+            right = now - 1
+        else:
+            left = now + 1
+
+    return
+
+
+solution(biggest, total)
 print(min_k)

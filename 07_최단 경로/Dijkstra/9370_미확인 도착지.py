@@ -24,72 +24,72 @@ B100 요원, 요란한 옷차림을 한 서커스 예술가 한 쌍이 한 도�
 이 두가지의 최단 거리를 구해주고 그 최단거리중 하나가
 출발지점 -> 도착지점의 최단거리와 같다면 도착지점을 저장해준다.
 '''
-import sys
 
+from heapq import heappop, heappush
+import sys
 input = sys.stdin.readline
 INF = int(1e9)
 
 T = int(input())
 
-from heapq import heappop, heappush
-
 
 def dijkstra(start):
-  q = []
-  distance = [INF] * (n + 1)
+    q = []
+    distance = [INF] * (n + 1)
 
-  # 시작 노드 초기화
-  heappush(q, (0, start))
-  distance[start] = 0
+    # 시작 노드 초기화
+    heappush(q, (0, start))
+    distance[start] = 0
 
-  while q:  # 큐가 비어있지 않다면
-    dist, now = heappop(q)
+    while q:  # 큐가 비어있지 않다면
+        dist, now = heappop(q)
 
-    if distance[now] < dist: continue
+        if distance[now] < dist:
+            continue
 
-    for next, c in graph[now]:
-      nc = dist + c
-      if nc < distance[next]:
-        distance[next] = nc
-        heappush(q, (nc, next))
+        for next, c in graph[now]:
+            nc = dist + c
+            if nc < distance[next]:
+                distance[next] = nc
+                heappush(q, (nc, next))
 
-  return distance
+    return distance
+
 
 # 다익스트라 알고리즘을 수행
 answer = [[] for _ in range(T)]
 for i in range(T):
 
-  n, m, t = map(int, input().split())  # 정점, 간선 , 목적지 후보 개수
-  s, g, h = map(int, input().split())  # s = 출발지
+    n, m, t = map(int, input().split())  # 정점, 간선 , 목적지 후보 개수
+    s, g, h = map(int, input().split())  # s = 출발지
 
-  graph = [[] for _ in range(n + 1)]
-  destination = []
+    graph = [[] for _ in range(n + 1)]
+    destination = []
 
-  # 지름길 입력받기
-  for _ in range(m):
-    a, b, d = map(int, input().split())
-    graph[a].append((b, d))
-    graph[b].append((a, d))
+    # 지름길 입력받기
+    for _ in range(m):
+        a, b, d = map(int, input().split())
+        graph[a].append((b, d))
+        graph[b].append((a, d))
 
-  # 목적지 후보
-  for _ in range(t):
-    destination.append(int(input()))
+    # 목적지 후보
+    for _ in range(t):
+        destination.append(int(input()))
 
-  start_ = dijkstra(s)
-  h_ = dijkstra(h)
-  g_ = dijkstra(g)
-  
+    start_ = dijkstra(s)
+    h_ = dijkstra(h)
+    g_ = dijkstra(g)
 
-  # 가능한 목적지를 공백으로 분리해서 오름차순 출력하기
-  # g-h 길을 지나갔는지 탐지하는 코드 **
-  for d in destination:
-    if start_[g] + g_[h] + h_[d] == start_[d] or start_[h] + h_[g] + g_[d] == start_[d]:
-      answer[i].append(d)
+    # 가능한 목적지를 공백으로 분리해서 오름차순 출력하기
+    # g-h 길을 지나갔는지 탐지하는 코드 **
+    for d in destination:
+        if start_[g] + g_[h] + h_[d] == start_[d] or start_[h] + h_[g] + g_[d] == start_[d]:
+            answer[i].append(d)
 
-  answer[i].sort()
-  
+    answer[i].sort()
+
 for i in answer:
-  for j in i:
-    # a는 int이므로 ' '로 바로 결합 안됨!
-    print(str(j) + ' ', end='')
-  print()
+    for j in i:
+        # a는 int이므로 ' '로 바로 결합 안됨!
+        print(str(j) + ' ', end='')
+    print()

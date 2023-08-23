@@ -39,7 +39,7 @@ ans = 0
 # subsum_a와 subsum_b의 값을 더하는 작업을 이분탐색으로 진행
 for element_b in subsum_b:
 
-   # 이미 subsum_b의 값이 c를 넘었다면 작업 X
+    # 이미 subsum_b의 값이 c를 넘었다면 작업 X
     if element_b > c:
         continue
 
