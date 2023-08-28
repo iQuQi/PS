@@ -7,52 +7,39 @@
 
 # ========================
 # 순열 사용 시 Python3 언어로는 시간초과가 뜨며 PyPy3로 제출할 경우에만 통과
-n = int(input())
-# 연산을 수행하고자 하는 수 리스트
-data = list(map(int, input().split()))
-# 더하기, 빼기, 곱하기, 나누기 연산자 개수
-add, sub, mul, div = map(int, input().split())
+# 백트래킹 (Python3 통과, PyPy3도 통과)
+import sys
 
-# 최솟값과 최댓값 초기화
-min_value = 1e9
-max_value = -1e9
+input = sys.stdin.readline
+N = int(input())
+num = list(map(int, input().split()))
+op = list(map(int, input().split()))  # +, -, *, //
 
-# 깊이 우선 탐색 (DFS) 메서드
-
-
-def dfs(i, now):
-    global min_value, max_value, add, sub, mul, div
-    # 모든 연산자를 다 사용한 경우, 최솟값과 최댓값 업데이트
-    if i == n:
-        min_value = min(min_value, now)
-        max_value = max(max_value, now)
-    else:
-        # 각 연산자에 대하여 재귀적으로 수행
-        if add > 0:
-            add -= 1
-            dfs(i + 1, now + data[i])
-            add += 1
-        if sub > 0:
-            sub -= 1
-            dfs(i + 1, now - data[i])
-            sub += 1
-        if mul > 0:
-            mul -= 1
-            dfs(i + 1, now * data[i])
-            mul += 1
-        if div > 0:
-            div -= 1
-            dfs(i + 1, int(now / data[i]))  # 나눌 때는 나머지를 제거
-            div += 1
+maximum = -1e9
+minimum = 1e9
 
 
-# DFS 메서드 호출
-dfs(1, data[0])
+def dfs(depth, total, plus, minus, multiply, divide):
+    global maximum, minimum
+    if depth == N:
+        maximum = max(total, maximum)
+        minimum = min(total, minimum)
+        return
 
-# 최댓값과 최솟값 차례대로 출력
-print(max_value)
-print(min_value)
+    if plus:
+        dfs(depth + 1, total + num[depth], plus - 1, minus, multiply, divide)
+    if minus:
+        dfs(depth + 1, total - num[depth], plus, minus - 1, multiply, divide)
+    if multiply:
+        dfs(depth + 1, total * num[depth], plus, minus, multiply - 1, divide)
+    if divide:
+        dfs(depth + 1, int(total / num[depth]),
+            plus, minus, multiply, divide - 1)
 
+
+dfs(1, num[0], op[0], op[1], op[2], op[3])
+print(maximum)
+print(minimum)
 
 ''' 백트래킹 풀이
 
@@ -86,34 +73,46 @@ print(min_result)
 
 
 '''내코드
-
+import sys
 from itertools import permutations
 
+input = sys.stdin.readline
+
 n = int(input())
-A = list(map(int, input().split()))
+numbers = list(map(int, input().split()))
+plus, minus, mul, div = map(int, input().split())
 
-add, sub, mul, div = map(int, input().split())
+oper = []
+for i in range(plus):
+  oper.append('+')
+for i in range(minus):
+  oper.append('-')
+for i in range(mul):
+  oper.append('*')
+for i in range(div):
+  oper.append('/')
 
-opers = ['A'] * add + ['S'] * sub + ['M'] * mul + ['D'] * div
-opers = [oper for oper in opers if oper != '']
+cases = list(set(permutations(oper, n - 1)))
+# 중복제거 필수 - 중복제거해도 중보계산 발생하기함
+# + + - * 와 + + * - 가 있다면 백트래킹의 경우 + + 까지의 계산을 한번만 하는데 순열의 경우 아님
+# min_ = 1e9
+# max_ = -1e9  # 오답이유: max_ = -1 로 설정해서...
+# 아니근데 순열에서만 sys.max로 해야 답이 맞는 이유는뭐임;;
+max_ = -sys.maxsize
+min_ = sys.maxsize
 
-max_ = -1e9
-min_ = 1e9
-
-selections = list(permutations(opers, n - 1))
-
-for s in selections:
-  result = A[0]
-  for index, oper in enumerate(s):
-    if oper == 'A': result += A[index + 1]
-    elif oper == 'S': result -= A[index + 1]
-    elif oper == 'M': result *= A[index + 1]
-    elif oper == 'D': result = int(result / A[index+1])
-
-  max_ = max(max_, result)
-  min_ = min(min_, result)
+for case in cases:
+  total = numbers[0]
+  for idx, n in enumerate(numbers[1:]):
+    if case[idx] == '+': total += n
+    elif case[idx] == '-': total -= n
+    elif case[idx] == '*': total *= n
+    elif case[idx] == '/': total = int(total / n)
+  min_ = min(min_, total)
+  max_ = max(max_, total)
 
 print(max_)
 print(min_)
+
 
 '''
