@@ -115,8 +115,8 @@
 3. 점화식
 
    ```
-   B[k][W] = B[k-1][W] (if wk > W)
-           = max(B[k-1][W], B[k-1][W-wk] + wk) (else)
+   K[i, w]  = K[i - 1, w] (if wi > w)
+           =  max{K[i - 1, w], K[i - 1, w - wi] + vi}
 
    # B[i, w]: 물건 1~i까지만 고려하고, (임시) 배낭 용량이 w일 때의 최대 가치
    ```

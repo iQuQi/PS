@@ -106,12 +106,12 @@
           if distance[now] < dist:
               continue
           # 현재 노드와 연결된 다른 인접한 노드들을 확인
-          for i in graph[now]:
-              cost = dist + i[1]
+          for i, c  in graph[now]:
+              cost = dist + c
               # 현재 노드를 거쳐서, 다른 노드로 이동하는 거리가 더 짧은 경우
-              if cost < distance[i[0]]:
-                  distance[i[0]] = cost
-                  heappush(q, (cost, i[0]))
+              if cost < distance[i]:
+                  distance[i] = cost
+                  heappush(q, (cost, i))
   ```
 
 <br><br>
