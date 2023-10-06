@@ -787,3 +787,5 @@
 # 🔥 혹시 몰라서 넣어두는 C++ 코테 문법
 
 | https://velog.io/@21stairs/C-%EB%AC%B8%EB%B2%95-%EC%A0%95%EB%A6%AC
+
+| https://blogshine.tistory.com/101
