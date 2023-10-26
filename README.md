@@ -784,6 +784,8 @@
 
 | https://paris-in-the-rain.tistory.com/100
 
+| https://velog.io/@devheyrin/%EC%BD%94%EB%94%A9-%ED%85%8C%EC%8A%A4%ED%8A%B8%EB%A5%BC-%EC%9C%84%ED%95%9C-SQL-Commands-%EC%A0%95%EB%A6%AC
+
 <br>
 
 # 🔥 혹시 몰라서 넣어두는 C++ 코테 문법
