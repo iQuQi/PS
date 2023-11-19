@@ -35,7 +35,7 @@ for i in range(1, n):
         dp.append((len(LIS)-1, arr[i]))  # 달라진 부분1
 
     else:
-        idx = binarySearch(arr[i])
+        idx = bisect_left(arr[i])
         LIS[idx] = arr[i]
         dp.append((idx, arr[i]))  # 달라진 부분2
 
