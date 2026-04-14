@@ -398,22 +398,41 @@
 
 2. **사용법 공식** \*\*\* 필수 암기
 
-- list(map(int, input().split())) → int 대신 float, str 가능
-- 공백으로 구분된 데이터 개수가 많지 않다면 list() 없이 변수에 풀어서 받아도 됨
-  - a, b, c = map(int, input().split())
-  - split(':'): 구분자 지정 가능
-
-3. **빠른 입력** ⇒ 매우 많은 수의 데이터를 입력 받아야 할 때 사용 ⭐️관행적으로 외워서 사용⭐️
-
    ```python
-   import sys
-   sys.stdin.readline().rstrip()
-   # readline()으로 입력 시 엔터가 줄 바꿈 기호로 입력되는데,
-   # 이 공백 문자를 제거하려면 반드시 rstrip() 함수가 필요
-
-   # 일반적인 사용법 - int() 적용 시 개행문자까지 제거되서 rstrip 불필요
-   input = sys.stdin.readline
-   int(input())
+    import sys
+    input = sys.stdin.readline
+    
+    # ==========================================
+    # 1. 단일 데이터 입력
+    # ==========================================
+    N = int(input())                 # 정수 1개
+    word = input().rstrip()          # 문자열 1개 (엔터 제거 필수!)
+    
+    # ==========================================
+    # 2. 변수에 나눠 담기 (언패킹)
+    # ==========================================
+    a, b = map(int, input().split())        # 공백 기준 정수 (예: 10 20)
+    h, m = map(int, input().split(':'))     # 특정 기호 기준 정수 (예: 12:30)
+    
+    # int 대신 float, str 활용
+    x, y = map(float, input().split())      # 실수로 받을 때 (예: 3.14 2.5)
+    str1, str2 = input().split()            # 문자열로 받을 때 (str은 map 생략 가능)
+    # str1, str2 = map(str, input().split())  <- 이렇게 써도 되지만 위 방식이 더 깔끔함
+    
+    # ==========================================
+    # 3. 1차원 리스트로 받기
+    # ==========================================
+    arr_int = list(map(int, input().split()))     # 정수 리스트 (예: 1 2 3 -> [1, 2, 3])
+    arr_float = list(map(float, input().split())) # 실수 리스트 (예: 1.5 2.5 -> [1.5, 2.5])
+    arr_str = list(input().split())               # 문자열 리스트 (예: a b c -> ['a', 'b', 'c'])
+    
+    arr_no_space = list(map(int, input().rstrip())) # 띄어쓰기 없는 숫자 쪼개기 (예: 101 -> [1, 0, 1])
+    
+    # ==========================================
+    # 4. 2차원 배열 (Grid) 입력받기
+    # ==========================================
+    # N은 행의 개수 (앞에서 N = int(input()) 으로 받았다고 가정)
+    board = [list(map(int, input().split())) for _ in range(N)]
    ```
 
 4. **기타 함수**
